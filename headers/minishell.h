@@ -1,3 +1,4 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -13,7 +14,7 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include "libft/libft.h"
+# include "../libft/libft.h"
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <unistd.h>
@@ -108,5 +109,11 @@ typedef struct s_minishell
 }	t_minishell;
 
 extern t_minishell    g_minishell;
+
+void ft_init_minishell(char **env);
+void ft_init_signals(void);
+void ft_clean_ms(void);
+char **ft_split_cmd(char *line);
+void ft_execute_command(char **args);
 
 #endif

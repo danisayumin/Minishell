@@ -1,185 +1,103 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/10 19:00:59 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/10 20:35:42 by joscarlo         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include "headers/minishell.h"
+#include <string.h> // Para strlen e strncpy
 
-#include "minishell.h"
-
-static void	ft_init_minishell(char **env)
+// Implementação da função ft_memset
+void *ft_memset(void *s, int c, size_t n)
 {
-	ft_memset(&g_minishell, 0, sizeof(t_minishell));
-	g_minishell.environ = env;
-	g_minishell.stdin = dup(0);
-	g_minishell.stdout = dup(1);
-	tcgetattr(STDIN_FILENO, &g_minishell.original_term);
+    unsigned char *ptr = s;
+    while (n--)
+        *ptr++ = (unsigned char)c;
+    return s;
 }
 
-static void	ft_sigint_handler(int num)
+// Implementação da função ft_putstr_fd
+void ft_putstr_fd(char *s, int fd)
 {
-	(void)num;
-	if (g_minishell.signint_child)
-	{
-		ft_putstr_fd("\n", 1);
-		g_minishell.signint_child = false;
-		g_minishell.heredoc_sigint = true;
-	}
-	else
-	{
-		ft_putstr_fd("\n", 1);
-		rl_replace_line("", 0);
-		rl_on_new_line();
-		rl_redisplay();
-	}
+    if (s)
+        write(fd, s, strlen(s));
 }
 
-void ft_init_signals(void)
+// Implementação da função ft_split
+char **ft_split(const char *s, char c)
 {
-	struct termios	term;
-	
-	term = g_minishell.original_term;
-	term.c_lflag &= ~ECHOCTL;
-	tcsetattr(STDERR_FILENO, TCSANOW, &term);
-	g_minishell.heredoc_sigint = false;
-	g_minishell.signint_child = false;
-	signal(SIGINT, ft_sigint_handler);
-	signal(SIGQUIT, SIG_IGN);
+    // Implementação básica para dividir a string s por delimitador c
+    // Retorna um array de strings (char **)
+    // Esta é uma versão simplificada para fins de exemplo
+    // Uma implementação completa requer mais código para lidar com casos de erro e alocação
+    char **result;
+    size_t i = 0, j = 0, k = 0;
+    size_t count = 1;
+    for (i = 0; s[i]; i++)
+        if (s[i] == c)
+            count++;
+    result = malloc((count + 1) * sizeof(char *));
+    if (!result)
+        return NULL;
+    result[count] = NULL;
+    for (i = 0; i < count; i++)
+    {
+        while (s[j] == c)
+            j++;
+        k = j;
+        while (s[k] && s[k] != c)
+            k++;
+        result[i] = malloc(k - j + 1);
+        if (!result[i])
+        {
+            while (i--)
+                free(result[i]);
+            free(result);
+            return NULL;
+        }
+        strncpy(result[i], s + j, k - j);
+        result[i][k - j] = '\0';
+        j = k;
+    }
+    return result;
 }
 
-static void	ft_del(void *ptr)
+// Definição da variável global
+t_minishell g_minishell;
+
+// Implementação de funções não fornecidas no exemplo
+void ft_init_minishell(char **env);
+void ft_init_signals(void);
+void ft_clean_ms(void);
+char **ft_split_cmd(char *line)
 {
-	free(ptr);
-	ptr = NULL;
+    return ft_split(line, ' ');
 }
+void ft_execute_command(char **args);
 
-void	*ft_garbage_collector(void *ptr, bool clean)
+int main(int argc, char **argv, char **env)
 {
-	static t_list	*garbage_list;
+    char    **args;
 
-	if (clean)
-	{
-		ft_lstclear(&garbage_list, ft_del);
-		return (NULL);
-	}
-	else
-	{
-		ft_lstadd_back(&garbage_list, ft_lstnew(ptr));
-		return (ptr);
-	}
-}
-
-void	ft_clear_io_list(t_io_node **lst)
-{
-	t_io_node	*curr_node;
-	t_io_node	*next;
-
-	curr_node = *lst;
-	if (!curr_node)
-		return ;
-	while (curr_node)
-	{
-		free(curr_node->value);
-		ft_free_char2(curr_node -> expanded_value);
-		next = curr_node->next;
-		free(curr_node);
-		curr_node = next;
-	}
-	*lst = NULL;
-}
-
-void	ft_clear_cmd_node(t_node *node)
-{
-	if (!node)
-		return ;
-	ft_clear_io_list(&(node -> io_list));
-	free(node -> args);
-	ft_free_char2(node -> expanded_args);
-}
-void	ft_recursive_clear_ast(t_node *node)
-{
-	if (!node)
-		return ;
-	if (node -> type == N_CMD)
-		ft_clear_cmd_node(node);
-	else
-	{
-		if (node->left)
-			ft_recursive_clear_ast(node->left);
-		if (node->right)
-			ft_recursive_clear_ast(node->right);
-	}
-	free(node);
-}
-
-void	ft_clear_ast(t_node **ast)
-{
-	ft_recursive_clear_ast(*ast);
-	*ast = NULL;
-	ft_clear_token_list(&g_minishell.tokens);
-}
-
-static void	ft_clear_envlst(void)
-{
-	t_env	*envlst;
-	t_env	*envlst_tofree;
-
-	envlst = g_minishell.envlst;
-	while (envlst)
-	{
-		envlst_tofree = envlst;
-		envlst = envlst->next;
-		free(envlst_tofree);
-	}
-	g_minishell.envlst = NULL;
+    (void)argc;
+    (void)argv;
+    ft_init_minishell(env);
+    while (1)
+    {
+        ft_init_signals();
+        g_minishell.line = readline(PROMPT); // Exibe o prompt e lê a linha
+        if (!g_minishell.line) // Se o usuário pressionar Ctrl+D (EOF)
+        {
+            ft_clean_ms();
+            ft_putstr_fd("exit\n", 1);
+            exit(g_minishell.exit_s);
+        }
+        if (g_minishell.line[0]) // Se houver uma entrada
+        {
+            add_history(g_minishell.line); // Adiciona ao histórico
+            args = ft_split_cmd(g_minishell.line); // Divide a linha em argumentos
+            if (args[0])
+                ft_execute_command(args); // Executa o comando
+            free(args); // Libera a memória alocada
+        }
+        free(g_minishell.line); // Libera a linha
+    }
+    ft_clean_ms();
+    return (g_minishell.exit_s);
 }
 
 
-void ft_clean_ms(void)
-{
-	ft_garbage_collector(NULL, true);
-	ft_clear_ast(&g_minishell.ast);
-	ft_clear_envlst();
-	rl_clear_history();
-	tcsetattr(STDIN_FILENO, TCSANOW, &g_minishell.original_term);
-}
-
-int	main(int argc, char **argv, char **env)
-{
-	((void)argc, (void)argv);
-	ft_init_minishell(env);
-	while (1)
-	{
-		ft_init_signals();
-		g_minishell.line = readline(PROMPT);
-		//verificas se ha argumento
-		if (!g_minishell.line)
-			ft_clean_ms(),
-					ft_putstr_fd("exit\n", 1), exit(g_minishell.exit_s);
-		//se houver argumento coloca no historico
-		if (g_minishell.line[0])
-			add_history(g_minishell.line);
-		//tokenizaçao
-		g_minishell.tokens = ft_tokenize();
-		//verifica se nao ha tokenizacao, se nao continua
-		if (!g_minishell.tokens)
-			continue ;
-		//parser
-		g_minishell.ast = ft_parse();
-		//verifica se há erro no parse
-		if (g_minishell.parse_err.type)
-		{
-			ft_handle_parse_err();
-			continue ;
-		}
-		//execução
-		ft_start_execution();
-	}
-	ft_garbage_collector(NULL, true);
-	return (ft_clean_ms(), g_minishell.exit_s);
-}
