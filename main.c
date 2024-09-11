@@ -52,7 +52,7 @@ void ft_execute_command(char **args)
 		if (execve(args[0], args, g_minishell.environ) == -1)
 		{
 			perror("minishell"); // Se der erro na execução
-			exit(EXIT_FAILURE);
+			//exit(EXIT_FAILURE);
 		}
 	}
 	else if (pid > 0)
@@ -65,43 +65,37 @@ void ft_execute_command(char **args)
 	}
 }
 
-void ft_clean_ms(void)
+void	ft_clean_ms(void)
 {
 	clear_history();
 	tcsetattr(STDIN_FILENO, TCSANOW, &g_minishell.original_term);
 }
 
-char **ft_split_cmd(char *line)
+char	**ft_split_cmd(char *line)
 {
 	return ft_split(line, ' ');
 }
 
-int main(int argc, char **argv, char **env)
+int	main(int argc, char **argv, char **env)
 {
-	char **args;
-	((void)argc, (void)argv);
+	char	**args;
+
+	(void)argv;
 	ft_init_minishell(env);
 	while (1)
 	{
 		ft_init_signals();
 		g_minishell.line = readline(PROMPT);
 		if (!g_minishell.line) // Se o usuário pressionar Ctrl+D (EOF)
-		{
-			ft_clean_ms();
-			ft_putstr_fd("exit\n", 1);
-			exit(g_minishell.exit_s);
-		}
+			(ft_clean_ms(),
+				ft_putstr_fd("exit\n", 1), exit(g_minishell.exit_s));
 		if (g_minishell.line[0])
 		{
 			add_history(g_minishell.line);
 			args = ft_split_cmd(g_minishell.line); //minitokenização
-			if (args[0])
-				ft_execute_command(args); // Executa o comando
-			free(args); // Libera a memória alocada
 		}
-		free(g_minishell.line);
-	ft_clean_ms();
-	return (g_minishell.exit_s);
-}
-}
+		ft_execute_command(args);
+	}
+	return (ft_clean_ms(), g_minishell.exit_s);
 
+}
