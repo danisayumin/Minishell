@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:00:59 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/10 20:35:42 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/13 11:41:23 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	ft_init_minishell(char **env)
 	tcgetattr(STDIN_FILENO, &g_minishell.original_term);
 }
 
-static void	ft_sigint_handler(int num)
+static void	ft_sigint_handler(int num) // ver se nao ada bo
 {
 	(void)num;
 	if (g_minishell.signint_child)
@@ -41,13 +41,13 @@ static void	ft_sigint_handler(int num)
 
 void ft_init_signals(void)
 {
-	struct termios	term;
+	// struct termios	term;
 	
-	term = g_minishell.original_term;
-	term.c_lflag &= ~ECHOCTL;
-	tcsetattr(STDERR_FILENO, TCSANOW, &term);
-	g_minishell.heredoc_sigint = false;
-	g_minishell.signint_child = false;
+	// term = g_minishell.original_term;
+	// term.c_lflag &= ~ECHOCTL;
+	// tcsetattr(STDERR_FILENO, TCSANOW, &term);
+	// g_minishell.heredoc_sigint = false;
+	// g_minishell.signint_child = false;
 	signal(SIGINT, ft_sigint_handler);
 	signal(SIGQUIT, SIG_IGN);
 }
@@ -170,13 +170,13 @@ int	main(int argc, char **argv, char **env)
 		if (!g_minishell.tokens)
 			continue ;
 		//parser
-		g_minishell.ast = ft_parse();
+		//g_minishell.ast = ft_parse();
 		//verifica se há erro no parse
-		if (g_minishell.parse_err.type)
-		{
-			ft_handle_parse_err();
-			continue ;
-		}
+		// if (g_minishell.parse_err.type)
+		// {
+		// 	ft_handle_parse_err();
+		// 	continue ;
+		// }
 		//execução
 		ft_start_execution();
 	}
