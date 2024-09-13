@@ -34,14 +34,13 @@ void ft_sigint_handler(int num)
 	}
 }
 
-void ft_init_signals(void)
+void	ft_init_signals(void)
 {
 	signal(SIGINT, ft_sigint_handler);
 	signal(SIGQUIT, SIG_IGN);
 }
 
-
-void ft_execute_command(char **args)
+void	ft_execute_command(char **args)
 {
 	int pid;
 	int status;
@@ -90,12 +89,11 @@ int	main(int argc, char **argv, char **env)
 			(ft_clean_ms(),
 				ft_putstr_fd("exit\n", 1), exit(g_minishell.exit_s));
 		if (g_minishell.line[0])
-		{
 			add_history(g_minishell.line);
-			args = ft_split_cmd(g_minishell.line); //minitokenização
-		}
+		g_minishell.tokens = ft_tokenize();
+		if (!g_minishell.tokens)
+			continue ;
 		ft_execute_command(args);
 	}
 	return (ft_clean_ms(), g_minishell.exit_s);
-
 }
