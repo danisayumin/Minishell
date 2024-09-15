@@ -14,6 +14,7 @@
 # define MINISHELL_H
 
 # include "libft/libft.h"
+# include "tokenizer.h"
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <unistd.h>
