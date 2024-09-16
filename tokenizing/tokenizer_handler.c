@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer_handler.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danielasayuminitta <danielasayuminitta@    +#+  +:+       +#+        */
+/*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 21:45:29 by danielasayu       #+#    #+#             */
-/*   Updated: 2024/09/14 23:08:19 by danielasayu      ###   ########.fr       */
+/*   Updated: 2024/09/16 19:52:20 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,10 @@ t_token	*ft_tokenization_handler(char *line)
 		if (ft_isspace(*line))
 			ft_skip_spaces(&line);
 		else if (!ft_strncmp(line, "<", 1) || !ft_strncmp(line, ">", 1)
-			|| !ft_strncmp(line, "|", 1) || !ft_strncmp(line, "&&", 2)
-			|| !ft_strncmp(line, "(", 1) || !ft_strncmp(line, ")", 1))
+			|| !ft_strncmp(line, "|", 1) || !ft_strncmp(line, "&&", 2))
 			error = (!ft_handle_separator(&line, &token_list) && 1);
 		else
-			error = (!ft_append_identifier(&line, &token_list) && 1);
+			error = (!ft_append_identifier(&line, &token_list) && 1);//todo
 	}
 	return (token_list);
 }
