@@ -15,6 +15,7 @@
 
 # include "libft/libft.h"
 # include "tokenizer.h"
+# include "parsing.h"
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <unistd.h>
