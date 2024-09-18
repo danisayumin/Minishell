@@ -33,20 +33,58 @@ typedef struct s_env
 	struct s_env	*next;
 }	t_env;
 
+typedef enum e_err_msg
+{
+	ERRMSG_CMD_NOT_FOUND,
+	ERRMSG_NO_SUCH_FILE,
+	ERRMSG_PERM_DENIED,
+	ERRMSG_AMBIGUOUS,
+	ERRMSG_TOO_MANY_ARGS,
+	ERRMSG_NUMERIC_REQUI
+}	t_err_msg;
+
+typedef enum e_err_no
+{
+	ENO_SUCCESS,
+	ENO_GENERAL,
+	ENO_CANT_EXEC = 126,
+	ENO_NOT_FOUND,
+	ENO_EXEC_255 = 255
+}	t_err_no;
+
+typedef enum e_ast_direction
+{
+	TD_LEFT,
+	TD_RIGHT
+}	t_ast_direction;
+
+typedef struct s_err
+{
+	t_err_no	no;
+	t_err_msg	msg;
+	char		*cause;
+}	t_err;
+
+typedef struct s_path
+{
+	t_err	err;
+	char	*path;
+}	t_path;
+
 typedef struct s_minishell
 {
-	char		*line;
-	t_token		*tokens;
-	t_token		*curr_token;
-	t_node		*ast;
-	int			exit_s;
-	bool		signint_child;
-	t_parse_err	parse_err;
-	int			stdin;
-	int			stdout;
-	char		**environ;
-	t_env		*envlst;
-	bool		heredoc_sigint;
+	char			*line;
+	t_token			*tokens;
+	t_token			*curr_token;
+	t_node			*ast;
+	int				exit_s;
+	bool			signint_child;
+	t_parse_err		parse_err;
+	int				stdin;
+	int				stdout;
+	char			**environ;
+	t_env			*envlst;
+	bool			heredoc_sigint;
 	struct termios	original_term;
 }	t_minishell;
 
