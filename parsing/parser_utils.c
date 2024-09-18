@@ -6,7 +6,7 @@
 /*   By: danielasayuminitta <danielasayuminitta@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 23:51:13 by danielasayu       #+#    #+#             */
-/*   Updated: 2024/09/15 00:26:00 by danielasayu      ###   ########.fr       */
+/*   Updated: 2024/09/17 23:57:44 by danielasayu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,14 @@ bool	ft_curr_token_is_binop(void)
 		return (false);
 	type = g_minishell.curr_token->type;
 	if (type == T_PIPE || type == T_AND || type == T_OR)
+		return (true);
+	return (false);
+}
+
+bool	ft_is_redir(t_token_type type)
+{
+	if (type == T_LESS || type == T_GREAT
+		|| type == T_DLESS || type == T_DGREAT)
 		return (true);
 	return (false);
 }

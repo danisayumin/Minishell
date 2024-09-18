@@ -14,9 +14,12 @@
 
 t_node	*ft_term(void)
 {
+	t_node	*node;
+
 	if (g_minishell.parse_err.type)
 		return (NULL);
-	return (ft_get_simple_cmd());
+	else
+		return (ft_get_simple_cmd());
 }
 
 t_node	*ft_expression(int min_prec)
