@@ -26,71 +26,12 @@
 
 # define PROMPT "minishell$ "
 
-typedef enum e_io_type
-{
-	IO_IN,
-	IO_OUT,
-	IO_HEREDOC,
-	IO_APPEND
-}	t_io_type;
-
-typedef struct s_io_node
-{
-	t_io_type			type;
-	char				*value;
-	char				**expanded_value;
-	int					here_doc;
-	struct s_io_node	*prev;
-	struct s_io_node	*next;
-}	t_io_node;
-
-typedef enum e_node_type
-{
-	N_CMD
-}	t_node_type;
-
-typedef struct s_node
-{
-	t_node_type			type;
-	t_io_node			*io_list;
-	char				*args;
-	char				**expanded_args;
-	struct s_node		*left;
-	struct s_node		*right;
-}	t_node;
-
-typedef enum e_token_type
-{
-	T_IDENTIFIER,
-	T_NL,
-}	t_token_type;
-
-typedef struct s_token
-{
-	t_token_type	type;
-	char			*value;
-	struct s_token	*next;
-	struct s_token	*prev;
-}	t_token;
-
 typedef struct s_env
 {
 	char			*key;
 	char			*value;
 	struct s_env	*next;
 }	t_env;
-
-typedef enum e_parse_err_type
-{
-	E_MEM = 1,
-	E_SYNTAX
-}	t_parse_err_type;
-
-typedef struct s_parse_err
-{
-	t_parse_err_type	type;
-	char				*str;
-}	t_parse_err;
 
 typedef struct s_minishell
 {
