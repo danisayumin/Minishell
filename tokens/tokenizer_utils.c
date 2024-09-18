@@ -6,7 +6,7 @@
 /*   By: danielasayuminitta <danielasayuminitta@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 22:58:51 by danielasayu       #+#    #+#             */
-/*   Updated: 2024/09/14 23:02:05 by danielasayu      ###   ########.fr       */
+/*   Updated: 2024/09/18 00:12:20 by danielasayu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 void	ft_skip_spaces(char **line)
 {
 	while (**line && ft_isspace(**line))
-				(*line)++;
+		(*line)++;
 }
