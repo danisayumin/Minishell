@@ -1,7 +1,7 @@
 NAME		:= minishell
 
 LIBFT		:= libft.a
-LIBFT_PATH	:= "libraries/libft"
+LIBFT_PATH	:= "libft"
 
 CC			:= cc
 
