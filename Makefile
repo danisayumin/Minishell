@@ -1,11 +1,11 @@
 NAME		:= minishell
 
-LIBFT		:= libft.a
-LIBFT_PATH	:= "libft"
+LIBFT		:= ./libft/libft.a
+LIBFT_PATH	:= "./libft"
 
 CC			:= cc
 
-CFLAGS		:= -Wall -Werror -Wextra
+CFLAGS		:= -Wall -Wextra -Werror 
 
 # BUILTINS	:=	builtins/cd.c \
 # 				builtins/echo.c \
@@ -61,18 +61,18 @@ SRCS		:=	$(PARSING)\
 
 OBJS		:=	$(SRCS:.c=.o)
 
-READLINE_PATH:=	/goinfre/homebrew/opt/readline #mudar p linux
+READLINE_PATH:=	/goinfre/homebrew/opt/readline#mudar p linux
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@ -Iinclude -I$(READLINE_PATH)/include
+	$(CC) $(CFLAGS)-Iheaders -I$(READLINE_PATH)/include  -c $< -o $@ 
 
 all: $(NAME)
 
 $(LIBFT):
-	@make -C $(LIBFT_PATH)
+	@make -C $(LIBFT_PATH) 
 
 $(NAME): $(LIBFT) $(OBJS)
-	@$(CC) -o $(NAME) $(OBJS) -L$(LIBFT_PATH) -lft -L$(READLINE_PATH)/lib -lreadline
+	@$(CC) -o $(NAME) $(OBJS) $(LIBFT) -L$(READLINE_PATH)/lib -lreadline
 
 clean:
 	@make clean -C $(LIBFT_PATH)

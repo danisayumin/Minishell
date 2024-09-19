@@ -13,7 +13,7 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include "libft/libft.h"
+# include "../libft/libft.h"
 # include "tokenizer.h"
 # include "parser.h"
 # include <readline/readline.h>

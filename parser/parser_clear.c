@@ -6,11 +6,11 @@
 /*   By: danielasayuminitta <danielasayuminitta@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 00:32:15 by danielasayu       #+#    #+#             */
-/*   Updated: 2024/09/18 00:20:31 by danielasayu      ###   ########.fr       */
+/*   Updated: 2024/09/18 22:51:42 by danielasayu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "headers/minishell.h"
+#include "minishell.h"
 
 void	ft_clear_io_list(t_io_node **lst)
 {
@@ -61,4 +61,8 @@ void	ft_clear_ast(t_node **ast)
 	ft_recursive_clear_ast(*ast);
 	*ast = NULL;
 	ft_clear_token_list(&g_minishell.tokens);
+}
+
+void func_lixo(){
+	ft_strlen("lixo");
 }
