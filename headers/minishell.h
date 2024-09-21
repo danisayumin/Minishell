@@ -208,5 +208,6 @@ void	ft_sigquit_handler(int num);
 void	ft_init_signals(void);
 char	*ft_strjoin_with(char const *s1, char const *s2, char c);
 int	ft_isspace(char c);
+char	*ft_strjoin_with_f(char *s1, char *s2, char c);
 
 #endif
