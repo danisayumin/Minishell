@@ -6,11 +6,11 @@
 /*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 20:30:28 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/16 20:37:36 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/21 17:27:12 by joscarlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "headers/minishell.h"
+#include "minishell.h"
 
 static void	ft_clear_envlst(void)
 {

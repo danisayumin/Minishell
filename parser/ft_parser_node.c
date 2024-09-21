@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser_node.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danielasayuminitta <danielasayuminitta@    +#+  +:+       +#+        */
+/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 00:30:30 by danielasayu       #+#    #+#             */
-/*   Updated: 2024/09/17 23:54:49 by danielasayu      ###   ########.fr       */
+/*   Updated: 2024/09/21 16:50:31 by joscarlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "headers/minishell.h"
+#include "minishell.h"
 
 t_node	*ft_new_node(t_node_type type)
 {

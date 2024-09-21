@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danielasayuminitta <danielasayuminitta@    +#+  +:+       +#+        */
+/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 23:51:13 by danielasayu       #+#    #+#             */
-/*   Updated: 2024/09/18 00:22:20 by danielasayu      ###   ########.fr       */
+/*   Updated: 2024/09/21 16:50:31 by joscarlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "headers/minishell.h"
+#include "minishell.h"
 
 void	ft_get_next_token(void)
 {

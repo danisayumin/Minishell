@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer_lst.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danielasayuminitta <danielasayuminitta@    +#+  +:+       +#+        */
+/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 22:57:16 by danielasayu       #+#    #+#             */
-/*   Updated: 2024/09/14 23:28:18 by danielasayu      ###   ########.fr       */
+/*   Updated: 2024/09/21 16:50:31 by joscarlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "headers/minishell.h"
+#include "minishell.h"
 
 void	ft_token_list_add_back(t_token **lst, t_token *new_token)
 {

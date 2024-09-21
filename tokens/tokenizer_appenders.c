@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer_appenders.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danielasayuminitta <danielasayuminitta@    +#+  +:+       +#+        */
+/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 23:11:07 by danielasayu       #+#    #+#             */
-/*   Updated: 2024/09/18 00:15:26 by danielasayu      ###   ########.fr       */
+/*   Updated: 2024/09/21 16:50:31 by joscarlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "headers/minishell.h"
+#include "minishell.h"
 
 int	ft_append_separator(t_token_type type, char **line_ptr,
 	t_token **token_list)

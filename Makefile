@@ -39,14 +39,14 @@ CLEANING	:=	clear.c
 # 				expander/heredoc_expander.c
 
 PARSING		:=	parser/parser_clear.c \
-				parser/parser_err.c \
+				parser/parser_error.c \
 				parser/parser_helpers.c \
 				parser/parser_nodes.c \
 				parser/parser_utils.c \
 				parser/parser.c
 
 TOKENIZING	:=	tokens/tokenizer_appenders.c \
-				tokens/tokenizer_handlers.c \
+				tokens/tokenizer_handler.c \
 				tokens/tokenizer_lst.c \
 				tokens/tokenizer_utils.c \
 				tokens/tokenizer.c
@@ -61,10 +61,10 @@ SRCS		:=	$(PARSING)\
 
 OBJS		:=	$(SRCS:.c=.o)
 
-READLINE_PATH:=	/goinfre/homebrew/opt/readline#mudar p linux
+READLINE_PATH:=	readline #mudar p linux
 
 %.o: %.c
-	$(CC) $(CFLAGS)-Iheaders -I$(READLINE_PATH)/include  -c $< -o $@ 
+	$(CC) $(CFLAGS)-Iheaders -I$(READLINE_PATH)  -c $< -o $@ 
 
 all: $(NAME)
 
@@ -72,7 +72,7 @@ $(LIBFT):
 	@make -C $(LIBFT_PATH) 
 
 $(NAME): $(LIBFT) $(OBJS)
-	@$(CC) -o $(NAME) $(OBJS) $(LIBFT) -L$(READLINE_PATH)/lib -lreadline
+	@$(CC) -o $(NAME) $(OBJS) $(LIBFT) -L$(READLINE_PATH) -lreadline
 
 clean:
 	@make clean -C $(LIBFT_PATH)

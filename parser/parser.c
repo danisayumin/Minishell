@@ -10,12 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "headers/minishell.h"
+#include "minishell.h"
 
 t_node	*ft_term(void)
 {
-	t_node	*node;
-
 	if (g_minishell.parse_err.type)
 		return (NULL);
 	else

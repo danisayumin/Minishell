@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parser_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danielasayuminitta <danielasayuminitta@    +#+  +:+       +#+        */
+/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 00:28:43 by danielasayu       #+#    #+#             */
-/*   Updated: 2024/09/18 00:21:03 by danielasayu      ###   ########.fr       */
+/*   Updated: 2024/09/21 16:49:36 by joscarlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "headers/minishell.h"
+#include "minishell.h"
 
 void	ft_set_parse_err(t_parse_err_type type)
 {

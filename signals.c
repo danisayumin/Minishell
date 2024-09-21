@@ -6,11 +6,11 @@
 /*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 20:38:36 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/16 20:41:02 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/21 16:50:31 by joscarlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "headers/minishell.h"
+#include "minishell.h"
 
 static void	ft_sigint_handler(int num)
 {
