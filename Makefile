@@ -18,15 +18,15 @@ CFLAGS		:= -Wall -Wextra -Werror
 
 CLEANING	:=	clear.c
 
-# EXEC		:=	exec/error_msg.c \
-# 				exec/exec_builtin.c \
-# 				exec/exec_redirect.c \
-# 				exec/exec_utils.c \
-# 				exec/exec.c \
-# 				exec/exist_check.c \
-# 				exec/ft_exec_simple_cmd.c \
-# 				exec/ft_get_path.c \
-# 				exec/init_tree.c
+# insert in EXEC rule after implementing builtins: 				exec/exec_builtin.c \
+
+EXEC		:=	exec/exec_redirect.c \
+				exec/exec_utils.c \
+				exec/exec.c \
+				exec/exist_check.c \
+				exec/ft_exec_simple_cmd.c \
+				exec/ft_get_path.c \
+				exec/ft_init_tree.c
 
 # EXPANDER	:=	expander/ft_asterisker.c \
 # 				expander/ft_clean_empty_strs.c \

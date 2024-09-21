@@ -6,7 +6,7 @@
 /*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:00:59 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/16 20:48:10 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/21 20:33:15 by joscarlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,13 @@ int	main(int argc, char **argv, char **env)
 		if (!g_minishell.tokens)
 			continue ;
 		//parser
-		//g_minishell.ast = ft_parse();
+		g_minishell.ast = ft_parse();
 		//verifica se há erro no parse
-		// if (g_minishell.parse_err.type)
-		// {
-		// 	ft_handle_parse_err();
-		// 	continue ;
-		// }
+		if (g_minishell.parse_err.type)
+		{
+			ft_handle_parse_err();
+			continue ;
+		}
 		//execução
 		ft_start_execution();
 	}
