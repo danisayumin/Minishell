@@ -1,17 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenizer.h                                        :+:      :+:    :+:   */
+/*   tokens.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danielasayuminitta <danielasayuminitta@    +#+  +:+       +#+        */
+/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 21:40:05 by danielasayu       #+#    #+#             */
-/*   Updated: 2024/09/18 00:35:21 by danielasayu      ###   ########.fr       */
+/*   Updated: 2024/09/21 19:19:27 by joscarlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TOKENIZING_H
-# define TOKENIZING_H
+#ifndef TOKENS_H
+# define TOKENS_H
+
+# define PROMPT "minishell$ "
 
 typedef enum e_token_type
 {

@@ -15,18 +15,19 @@
 
 # include <stdbool.h>
 
-# include "../libft/libft.h"
-# include "tokenizer.h"
-# include "parser.h"
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <unistd.h>
 # include <stdio.h>
 # include <signal.h>
 # include <termios.h>
-
-
-# define PROMPT "minishell$ "
+# include <limits.h>
+# include <dirent.h>
+# include <sys/wait.h>
+# include <fcntl.h>
+# include "../libft/libft.h"
+# include "tokens.h"
+# include "parser.h"
 
 typedef struct s_env
 {
@@ -130,16 +131,16 @@ void	ft_free_char2(char **tofree);
 
 /* ******************************   EXEC   ******************************** */
 // * error_msg.c *************************************************************
-//int		ft_err_msg(t_err err);
+int		ft_err_msg(t_err err);
 
 // * exec_builtin.c **********************************************************
 //int		ft_exec_builtin(char **args);
 //bool	ft_is_builtin(char *arg);
 
 // * exec_redirect.c *********************************************************
-//int		ft_out(t_io_node *io_list, int *status);
-//int		ft_in(t_io_node *io_list, int *status);
-//int		ft_append(t_io_node *io_list, int *status);
+int		ft_out(t_io_node *io_list, int *status);
+int		ft_in(t_io_node *io_list, int *status);
+int		ft_append(t_io_node *io_list, int *status);
 
 // * exec_utils.c ************************************************************
 void	*ft_garbage_collector(void *ptr, bool clean);
@@ -150,21 +151,21 @@ int		ft_get_exit_status(int status);
 int		ft_exec_node(t_node *tree, bool piped);
 
 // * exist_check.c ***********************************************************
-//t_err	ft_check_exec(char *file, bool cmd);
-//t_err	ft_check_read(char *file);
-//t_err	ft_check_write(char *file);
+t_err	ft_check_exec(char *file, bool cmd);
+t_err	ft_check_read(char *file);
+t_err	ft_check_write(char *file);
 
 // * ft_exec_simple_cmd.c ****************************************************
-//int		ft_check_redirection(t_node *node);
-//void	ft_reset_stds(bool piped);
-//int		ft_exec_simple_cmd(t_node *node, bool piped);
+int		ft_check_redirection(t_node *node);
+void	ft_reset_stds(bool piped);
+int		ft_exec_simple_cmd(t_node *node, bool piped);
 
 // * ft_get_path.c ***********************************************************
-//t_path	ft_get_path(char *cmd);
+t_path	ft_get_path(char *cmd);
 
 // * init_tree.c *************************************************************
 void	ft_init_tree(t_node *node);
-//void	ft_heredoc(t_io_node *io, int p[2]);
+void	ft_heredoc(t_io_node *io, int p[2]);
 
 /* ****************************   EXPANDER   ****************************** */
 // * ft_asterisker.c *********************************************************
