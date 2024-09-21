@@ -200,7 +200,7 @@ void	ft_heredoc(t_io_node *io, int p[2]);
 //char	*ft_strip_quotes(char *str);
 
 // * heredoc_expander.c ******************************************************
-//void	ft_heredoc_expander(char *str, int fd);
+void	ft_heredoc_expander(char *str, int fd);
 
 /* ****************************   MINISHELL   ***************************** */
 // * main_signals.c **********************************************************

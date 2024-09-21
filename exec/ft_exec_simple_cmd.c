@@ -6,7 +6,7 @@
 /*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 17:34:15 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/21 19:05:55 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/21 20:36:30 by joscarlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static int	ft_exec_child(t_node *node)
 	int		fork_pid;
 
 	g_minishell.signint_child = true;
+	fork_pid = fork();
 	if (!fork_pid)
 	{
 		tmp_status = ft_check_redirection(node);
