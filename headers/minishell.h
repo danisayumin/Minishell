@@ -13,6 +13,8 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# include <stdbool.h>
+
 # include "../libft/libft.h"
 # include "tokenizer.h"
 # include "parser.h"
@@ -22,7 +24,7 @@
 # include <stdio.h>
 # include <signal.h>
 # include <termios.h>
-# include <stdbool.h>
+
 
 # define PROMPT "minishell$ "
 
@@ -124,6 +126,7 @@ void	ft_init_envlst(void);
 /* ****************************   CLEANING   ****************************** */
 // * ft_clean_ms.c ***********************************************************
 void	ft_clean_ms(void);
+void	ft_free_char2(char **tofree);
 
 /* ******************************   EXEC   ******************************** */
 // * error_msg.c *************************************************************
@@ -143,8 +146,8 @@ void	*ft_garbage_collector(void *ptr, bool clean);
 bool	ft_is_delimiter(char *delimiter, char *str);
 
 // * exec.c ******************************************************************
-//int		ft_get_exit_status(int status);
-//int		ft_exec_node(t_node *tree, bool piped);
+int		ft_get_exit_status(int status);
+int		ft_exec_node(t_node *tree, bool piped);
 
 // * exist_check.c ***********************************************************
 //t_err	ft_check_exec(char *file, bool cmd);
@@ -160,7 +163,7 @@ bool	ft_is_delimiter(char *delimiter, char *str);
 //t_path	ft_get_path(char *cmd);
 
 // * init_tree.c *************************************************************
-//void	ft_init_tree(t_node *node);
+void	ft_init_tree(t_node *node);
 //void	ft_heredoc(t_io_node *io, int p[2]);
 
 /* ****************************   EXPANDER   ****************************** */
@@ -202,5 +205,7 @@ bool	ft_is_delimiter(char *delimiter, char *str);
 // * main_signals.c **********************************************************
 void	ft_sigquit_handler(int num);
 void	ft_init_signals(void);
+char	*ft_strjoin_with(char const *s1, char const *s2, char c);
+int	ft_isspace(char c);
 
 #endif
