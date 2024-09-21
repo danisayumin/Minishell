@@ -6,7 +6,7 @@
 /*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 20:30:28 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/21 20:14:52 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/21 20:17:06 by joscarlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,48 +103,4 @@ char	*ft_strjoin_with_f(char *s1, char *s2, char c)
 		joined[i++] = s2[j++];
 	joined[i] = 0;
 	return (free(s1), free(s2), joined);
-}
-
-static void	ft_init_leaf(t_node *node)
-{
-	t_io_node	*io;
-	int			p[2];
-	int			pid;
-
-	if (node->args)
-		node->expanded_args = ft_expand(node->args);
-	io = node->io_list;
-	while (io)
-	{
-		if (io->type == IO_HEREDOC)
-		{
-			pipe(p);
-			g_minishell.signint_child = true;
-			pid = (signal(SIGQUIT, SIG_IGN), fork());
-			if (!pid)
-				ft_heredoc(io, p);
-			if (ft_leave_leaf(p, &pid))
-				return ;
-			io->here_doc = p[0];
-		}
-		else
-			io->expanded_value = ft_expand(io->value);
-		io = io->next;
-	}
-}
-
-void	ft_init_tree(t_node *node)
-{
-	if (!node)
-		return ;
-	if (node->type == N_PIPE
-		|| node->type == N_AND
-		|| node->type == N_OR)
-	{
-		ft_init_tree(node -> left);
-		if (!g_minishell.heredoc_sigint)
-			ft_init_tree(node -> right);
-	}
-	else
-		ft_init_leaf(node);
 }
