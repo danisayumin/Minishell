@@ -57,7 +57,7 @@ SRCS		:=	$(PARSING)\
 				$(CLEANING)\
 				$(EXEC)\
 				$(EXPANDER)\
-				main.c signals.c
+				main.c signals.c general_utils.c
 
 OBJS		:=	$(SRCS:.c=.o)
 

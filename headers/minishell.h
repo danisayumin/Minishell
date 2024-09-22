@@ -181,8 +181,8 @@ void	ft_heredoc(t_io_node *io, int p[2]);
 //char	*ft_handle_dquotes(char *str, size_t *i);
 
 // * ft_expand.c *************************************************************
-//char	*ft_handle_dollar(char *str, size_t *i);
-//char	**ft_expand(char *str);
+char	*ft_handle_dollar(char *str, size_t *i);
+char	**ft_expand(char *str);
 
 // * ft_expander_split.c *****************************************************
 //char	**ft_expander_split(char const *s);
@@ -207,7 +207,8 @@ void	ft_heredoc_expander(char *str, int fd);
 void	ft_sigquit_handler(int num);
 void	ft_init_signals(void);
 char	*ft_strjoin_with(char const *s1, char const *s2, char c);
-int	ft_isspace(char c);
+int		ft_isspace(char c);
 char	*ft_strjoin_with_f(char *s1, char *s2, char c);
+char	*ft_strjoin_f(char *s1, char *s2);
 
 #endif
