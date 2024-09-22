@@ -194,7 +194,7 @@ char	**ft_expand(char *str);
 //char	**ft_join_str_arrs(char ***str_arrs);
 
 // * ft_globber.c ************************************************************
-//char	**ft_globber(char **expanded);
+char	**ft_globber(char **expanded);
 
 // * ft_strip_quotes.c *******************************************************
 //char	*ft_strip_quotes(char *str);
