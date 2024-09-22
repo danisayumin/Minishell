@@ -98,21 +98,21 @@ extern t_minishell    g_minishell;
 //int		ft_cd(char *path);
 
 // * echo.c ******************************************************************
-//int		ft_echo(char **args);
+int		ft_echo(char **args);
 
 // * env_utils.c *************************************************************
-//char	*ft_get_envlst_val(char *key);
-//bool	ft_env_entry_exists(char *key);
-//void	ft_update_envlst(char *key, char *value, bool create);
+char	*ft_get_envlst_val(char *key);
+bool	ft_env_entry_exists(char *key);
+void	ft_update_envlst(char *key, char *value, bool create);
 
 // * env.c *******************************************************************
-//char	*ft_extract_key(char *str);
-//char	*ft_extract_value(char *str);
+char	*ft_extract_key(char *str);
+char	*ft_extract_value(char *str);
 void	ft_init_envlst(void);
-//int		ft_env(void);
+int		ft_env(void);
 
 // * exit.c ******************************************************************
-//void	ft_exit(char **args);
+void	ft_exit(char **args);
 
 // * export.c ****************************************************************
 //int		ft_check_key(char *str);
@@ -134,8 +134,8 @@ void	ft_free_char2(char **tofree);
 int		ft_err_msg(t_err err);
 
 // * exec_builtin.c **********************************************************
-//int		ft_exec_builtin(char **args);
-//bool	ft_is_builtin(char *arg);
+int		ft_exec_builtin(char **args);
+bool	ft_is_builtin(char *arg);
 
 // * exec_redirect.c *********************************************************
 int		ft_out(t_io_node *io_list, int *status);
