@@ -6,7 +6,7 @@
 /*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 18:04:59 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/22 18:45:28 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/22 18:51:23 by joscarlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static char **ft_allocater(char const *s, char **strs)
 	return (strs);
 }
 
-static void	ft_words_filler(char const *s, char **strs)
+static void	ft_words_filler(char const *s, char **strs, size_t *i, size_t j)
 {
 	char	quotes;
 	size_t	k;
