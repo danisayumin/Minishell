@@ -6,7 +6,7 @@
 /*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 20:30:28 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/22 16:47:14 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/22 17:34:57 by joscarlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,17 @@ void	ft_free_char2(char **tofree)
 	i = 0;
 	while (tofree[i])
 		free(tofree[i++]);
+	free(tofree);
+}
+
+void	ft_free_char3(char ***tofree)
+{
+	size_t	i;
+
+	if (!tofree)
+		return ;
+	i = 0;
+	while (tofree[i])
+		ft_free_char2(tofree[i++]);
 	free(tofree);
 }
