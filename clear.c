@@ -6,7 +6,7 @@
 /*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 20:30:28 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/22 17:34:57 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/22 18:00:21 by joscarlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,32 @@ void	ft_free_char3(char ***tofree)
 	while (tofree[i])
 		ft_free_char2(tofree[i++]);
 	free(tofree);
+}
+
+char	*ft_clean_empty_strs(char *str)
+{
+	size_t	i;
+	size_t	j;
+	char	*tmp;
+	char	*ret;
+	size_t	dstsize;
+
+	if ((str[0] == '\'' && str[1] == '\'' && !str[2])
+		|| (str[0] == '"' && str[1] == '"' && !str[2]))
+		return (str);
+	tmp = ft_calloc(ft_strlen(str) + 1, sizeof(char));
+	i = 0;
+	j = 0;
+	while (str[i])
+	{
+		if ((str[i] == '\'' && str[i + 1] == '\'')
+			|| (str[i] == '"' && str[i + 1] == '"'))
+			i += 2;
+		else
+			tmp[j++] = str[i++];
+	}
+	free(str);
+	dstsize = ft_strlen(tmp) + 1;
+	ret = ft_calloc(dstsize, sizeof(char));
+	return (ft_strlcpy(ret, tmp, dstsize), free(tmp), ret);
 }

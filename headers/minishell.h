@@ -169,10 +169,10 @@ void	ft_heredoc(t_io_node *io, int p[2]);
 
 /* ****************************   EXPANDER   ****************************** */
 // * ft_asterisker.c *********************************************************
-//bool	ft_match_star(char *pattern, char *str);
+bool	ft_match_star(char *pattern, char *str);
 
 // * ft_clean_empty_strs.c ***************************************************
-//char	*ft_clean_empty_strs(char *str);
+char	*ft_clean_empty_strs(char *str);
 
 // * ft_expand_utils.c *******************************************************
 bool	ft_is_valid_var_char(char c);
@@ -188,10 +188,10 @@ char	**ft_expand(char *str);
 //char	**ft_expander_split(char const *s);
 
 // * ft_globber_utils.c ******************************************************
-//bool	ft_contains_asterisk(char *str);
-//size_t	ft_str_arr_len(char **str_arr);
-//size_t	ft_match_count(char *pattern);
-//char	**ft_join_str_arrs(char ***str_arrs);
+bool	ft_contains_asterisk(char *str);
+size_t	ft_str_arr_len(char **str_arr);
+size_t	ft_match_count(char *pattern);
+char	**ft_join_str_arrs(char ***str_arrs);
 
 // * ft_globber.c ************************************************************
 char	**ft_globber(char **expanded);
