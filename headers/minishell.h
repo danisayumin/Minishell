@@ -185,7 +185,7 @@ char	*ft_handle_dollar(char *str, size_t *i);
 char	**ft_expand(char *str);
 
 // * ft_expander_split.c *****************************************************
-//char	**ft_expander_split(char const *s);
+char	**ft_expander_split(char const *s);
 
 // * ft_globber_utils.c ******************************************************
 bool	ft_contains_asterisk(char *str);
@@ -197,7 +197,7 @@ char	**ft_join_str_arrs(char ***str_arrs);
 char	**ft_globber(char **expanded);
 
 // * ft_strip_quotes.c *******************************************************
-//char	*ft_strip_quotes(char *str);
+char	*ft_strip_quotes(char *str);
 
 // * heredoc_expander.c ******************************************************
 void	ft_heredoc_expander(char *str, int fd);

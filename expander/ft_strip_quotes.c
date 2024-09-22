@@ -6,7 +6,7 @@
 /*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 18:03:37 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/22 18:06:00 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/22 18:47:54 by joscarlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static size_t	ft_unquoted_strlen(char *str)
 				len += (i++ || 1);
 		}
 		else
-				len += (i++ || 1);
+			len += (i++ || 1);
 	}
 	return (len);
 }

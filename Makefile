@@ -28,15 +28,14 @@ EXEC		:=	exec/exec_redirect.c \
 				exec/ft_get_path.c \
 				exec/ft_init_tree.c
 
-# EXPANDER	:=	expander/ft_asterisker.c \
-# 				expander/ft_clean_empty_strs.c \
-# 				expander/ft_expand_utils.c \
-# 				expander/ft_expand.c \
-# 				expander/ft_expander_split.c \
-# 				expander/ft_globber_utils.c \
-# 				expander/ft_globber.c \
-# 				expander/ft_strip_quotes.c \
-# 				expander/heredoc_expander.c
+EXPANDER	:=	expander/ft_asterisker.c \
+				expander/ft_expand_utils.c \
+				expander/ft_expand.c \
+				expander/ft_expander_split.c \
+				expander/ft_globber_utils.c \
+				expander/ft_globber.c \
+				expander/ft_strip_quotes.c \
+				expander/heredoc_expander.c
 
 PARSING		:=	parser/parser_clear.c \
 				parser/parser_error.c \
