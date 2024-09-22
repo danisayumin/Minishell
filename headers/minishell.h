@@ -175,10 +175,10 @@ void	ft_heredoc(t_io_node *io, int p[2]);
 //char	*ft_clean_empty_strs(char *str);
 
 // * ft_expand_utils.c *******************************************************
-//bool	ft_is_valid_var_char(char c);
-//char	*ft_handle_normal_str(char *str, size_t *i);
-//char	*ft_handle_squotes(char *str, size_t *i);
-//char	*ft_handle_dquotes(char *str, size_t *i);
+bool	ft_is_valid_var_char(char c);
+char	*ft_handle_normal_str(char *str, size_t *i);
+char	*ft_handle_squotes(char *str, size_t *i);
+char	*ft_handle_dquotes(char *str, size_t *i);
 
 // * ft_expand.c *************************************************************
 char	*ft_handle_dollar(char *str, size_t *i);
