@@ -6,7 +6,7 @@
 /*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 18:48:22 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/24 19:59:00 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/24 20:25:17 by joscarlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int	ft_exec_builtin(char **args)
 {
 	if (ft_strcmp(args[0], "echo") == 0)
 		return (ft_echo(args));
-	// if (ft_strcmp(args[0], "cd") == 0)
-	// 	return (ft_cd(args[1]));
+	if (ft_strcmp(args[0], "cd") == 0)
+		return (ft_cd(args[1]));
 	if (ft_strcmp(args[0], "env") == 0)
 		return (ft_env());
 	if (ft_strcmp(args[0], "pwd") == 0)
