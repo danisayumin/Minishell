@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 18:52:13 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/22 18:52:30 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/24 19:12:58 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ft_init_envlst(void)
 	char	*key;
 	char	*value;
 
-	environ = g_minishell.environ;
+	environ = get_mini()->environ;
 	if (!environ)
 		return ;
 	i = 0;
@@ -68,7 +68,7 @@ int	ft_env(void)
 {
 	t_env	*list;
 
-	list = g_minishell.envlst;
+	list = get_mini()->envlst;
 	while (list)
 	{
 		if (list->value != NULL)

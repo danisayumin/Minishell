@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_heredoc_expander.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 20:30:59 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/21 20:32:18 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/24 19:12:58 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	ft_heredoc_expand_writer(char *str, size_t i, int fd)
 
 	start = ++i;
 	if (str[i] == '?')
-		return (ft_putnbr_fd(g_minishell.exit_s, fd), 2);
+		return (ft_putnbr_fd(get_mini()->exit_s, fd), 2);
 	while (str[i] && str[i] != '$' && str[i] != ' ')
 		i++;
 	if (i != start)

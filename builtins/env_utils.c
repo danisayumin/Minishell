@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 18:53:35 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/22 18:53:45 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/24 19:12:58 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ bool	ft_env_entry_exists(char *key)
 {
 	t_env	*envlst;
 
-	envlst = g_minishell.envlst;
+	envlst = get_mini()->envlst;
 	while (envlst)
 	{
 		if (!ft_strcmp(key, envlst->key))
@@ -44,7 +44,7 @@ char	*ft_get_envlst_val(char *key)
 {
 	t_env	*envlst;
 
-	envlst = g_minishell.envlst;
+	envlst = get_mini()->envlst;
 	while (envlst)
 	{
 		if (!ft_strcmp(key, envlst->key))
@@ -58,12 +58,12 @@ void	ft_envlst_back(t_env *new)
 {
 	t_env	*curr;
 
-	if (!g_minishell.envlst)
+	if (!get_mini()->envlst)
 	{
-		g_minishell.envlst = new;
+		get_mini()->envlst = new;
 		return ;
 	}
-	curr = g_minishell.envlst;
+	curr = get_mini()->envlst;
 	while (curr && curr->next)
 		curr = curr->next;
 	curr->next = new;
@@ -73,7 +73,7 @@ void	ft_update_envlst(char *key, char *value, bool create)
 {
 	t_env	*envlst;
 
-	envlst = g_minishell.envlst;
+	envlst = get_mini()->envlst;
 	while (envlst)
 	{
 		if (!ft_strcmp(key, envlst->key))

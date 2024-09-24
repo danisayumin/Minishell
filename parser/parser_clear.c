@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_clear.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danielasayuminitta <danielasayuminitta@    +#+  +:+       +#+        */
+/*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 00:32:15 by danielasayu       #+#    #+#             */
-/*   Updated: 2024/09/18 22:51:42 by danielasayu      ###   ########.fr       */
+/*   Updated: 2024/09/24 19:12:58 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,5 @@ void	ft_clear_ast(t_node **ast)
 {
 	ft_recursive_clear_ast(*ast);
 	*ast = NULL;
-	ft_clear_token_list(&g_minishell.tokens);
-}
-
-void func_lixo(){
-	ft_strlen("lixo");
+	ft_clear_token_list(&get_mini()->tokens);
 }

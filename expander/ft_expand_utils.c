@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_expand_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 16:52:03 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/22 16:52:13 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/24 16:02:24 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	ft_is_valid_var_char(char c)
+bool	ft_is_valid_char(char c)
 {
 	if (ft_isalnum(c) || c == '_')
 		return (true);

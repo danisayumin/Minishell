@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenizer.c                                        :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/14 21:42:11 by danielasayu       #+#    #+#             */
-/*   Updated: 2024/09/24 19:12:58 by dsayumi-         ###   ########.fr       */
+/*   Created: 2024/09/24 18:34:05 by dsayumi-          #+#    #+#             */
+/*   Updated: 2024/09/24 18:34:28 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_token	*ft_tokenize(void)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	char	*line;
-	t_token	*token_list;
+	size_t	i;
 
-	line = get_mini()->line;
-	token_list = ft_tokenization_handler(line);
-	free(line);
-	get_mini()->line = NULL;
-	return (token_list);
+	i = 0;
+	while (s1[i] && s2[i] && s1[i] == s2[i])
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

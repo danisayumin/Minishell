@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 17:02:51 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/21 19:11:22 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/24 19:12:58 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int ft_exec_pipeline(t_node *tree)
 	int	pid_l;
 	int	pid_r;
 
-	g_minishell.signint_child = true;
+	get_mini()->signint_child = true;
 	pipe(pfds);
 	pid_l = fork();
 	if (!pid_l)
@@ -59,7 +59,7 @@ static int ft_exec_pipeline(t_node *tree)
 		else
 		{
 			(close(pfds[0]), close(pfds[1]), waitpid(pid_l, &status, 0), waitpid(pid_r, &status, 0));
-			g_minishell.signint_child = false;
+			get_mini()->signint_child = false;
 			return (ft_get_exit_status(status));
 		}
 	}

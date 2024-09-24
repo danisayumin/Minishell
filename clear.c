@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clear.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 20:30:28 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/22 18:00:21 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/24 19:32:54 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,26 @@ static void	ft_clear_envlst(void)
 	t_env	*envlst;
 	t_env	*envlst_tofree;
 
-	envlst = g_minishell.envlst;
+	envlst = get_mini()->envlst;
 	while (envlst)
 	{
 		envlst_tofree = envlst;
 		envlst = envlst->next;
 		free(envlst_tofree);
 	}
-	g_minishell.envlst = NULL;
+	get_mini()->envlst = NULL;
 }
 
 void ft_clean_ms(void)
 {
 	ft_garbage_collector(NULL, true);
-	ft_clear_ast(&g_minishell.ast);
+	ft_clear_ast(&get_mini()->ast);
 	ft_clear_envlst();
 	rl_clear_history();
-	tcsetattr(STDIN_FILENO, TCSANOW, &g_minishell.original_term);
+	tcsetattr(STDIN_FILENO, TCSANOW, &get_mini()->original_term);
+	free(get_mini());
 }
+
 void	ft_free_char2(char **tofree)
 {
 	size_t	i;

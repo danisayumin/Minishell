@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_expand.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 16:06:54 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/22 16:44:05 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/24 19:12:58 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*ft_handle_dollar(char *str, size_t *i)
 	else if (str[*i] == '?')
 	{
 		(*i)++;
-		return (ft_itoa(g_minishell.exit_s));
+		return (ft_itoa(get_mini()->exit_s));
 	}
 	else if (!ft_is_valid_char(str[*i]))
 		return (ft_strdup("$"));
@@ -84,8 +84,8 @@ char	**ft_expand(char *str)
 	i = 0;
 	while (globbed[i])
 	{
-		globbed[i] = ft_strip_quotes(globbed);
+		globbed[i] = ft_strip_quotes(globbed[i]);
 		i++;
 	}
-	return(globbed);		
+	return(globbed);
 }

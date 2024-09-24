@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 18:55:20 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/22 18:55:31 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/24 19:12:58 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	ft_exit(char **args)
 {
 	int	exit_s;
 
-	exit_s = g_minishell.exit_s;
+	exit_s = get_mini()->exit_s;
 	if (args[1])
 	{
 		if (args[2] && ft_isnumber(args[1]))

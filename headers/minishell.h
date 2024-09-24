@@ -91,7 +91,7 @@ typedef struct s_minishell
 	struct termios	original_term;
 }	t_minishell;
 
-extern t_minishell    g_minishell;
+extern int	g_signal;
 
 /* ****************************   BUILTINS   ****************************** */
 // * cd.c ********************************************************************
@@ -128,6 +128,7 @@ void	ft_exit(char **args);
 // * ft_clean_ms.c ***********************************************************
 void	ft_clean_ms(void);
 void	ft_free_char2(char **tofree);
+void	ft_free_char3(char ***tofree);
 
 /* ******************************   EXEC   ******************************** */
 // * error_msg.c *************************************************************
@@ -175,7 +176,7 @@ bool	ft_match_star(char *pattern, char *str);
 char	*ft_clean_empty_strs(char *str);
 
 // * ft_expand_utils.c *******************************************************
-bool	ft_is_valid_var_char(char c);
+bool	ft_is_valid_char(char c);
 char	*ft_handle_normal_str(char *str, size_t *i);
 char	*ft_handle_squotes(char *str, size_t *i);
 char	*ft_handle_dquotes(char *str, size_t *i);
@@ -204,11 +205,13 @@ void	ft_heredoc_expander(char *str, int fd);
 
 /* ****************************   MINISHELL   ***************************** */
 // * main_signals.c **********************************************************
-void	ft_sigquit_handler(int num);
-void	ft_init_signals(void);
-char	*ft_strjoin_with(char const *s1, char const *s2, char c);
-int		ft_isspace(char c);
-char	*ft_strjoin_with_f(char *s1, char *s2, char c);
-char	*ft_strjoin_f(char *s1, char *s2);
+void		ft_sigquit_handler(int num);
+void		ft_init_signals(void);
+char		*ft_strjoin_with(char const *s1, char const *s2, char c);
+int			ft_isspace(char c);
+char		*ft_strjoin_with_f(char *s1, char *s2, char c);
+char		*ft_strjoin_f(char *s1, char *s2);
+int			ft_strcmp(const char *s1, const char *s2);
+t_minishell	*get_mini(void);
 
 #endif

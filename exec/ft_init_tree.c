@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_tree.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 20:17:34 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/21 20:26:22 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/24 19:12:58 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static bool	ft_leave_leaf(int p[2], int *pid)
 {
 	waitpid(*pid, pid, 0);
 	signal(SIGQUIT, ft_sigquit_handler);
-	g_minishell.signint_child = false;
+	get_mini()->signint_child = false;
 	close(p[1]);
 	if (WIFEXITED(*pid) && WEXITSTATUS(*pid) == SIGINT)
 		return (true);
@@ -72,7 +72,7 @@ static void	ft_init_leaf(t_node *node)
 		if (io->type == IO_HEREDOC)
 		{
 			pipe(p);
-			g_minishell.signint_child = true;
+			get_mini()->signint_child = true;
 			pid = (signal(SIGQUIT, SIG_IGN), fork());
 			if (!pid)
 				ft_heredoc(io, p);
@@ -95,7 +95,7 @@ void	ft_init_tree(t_node *node)
 		|| node->type == N_OR)
 	{
 		ft_init_tree(node -> left);
-		if (!g_minishell.heredoc_sigint)
+		if (!get_mini()->heredoc_sigint)
 			ft_init_tree(node -> right);
 	}
 	else

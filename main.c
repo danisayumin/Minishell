@@ -3,69 +3,81 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:00:59 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/21 20:33:15 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/24 19:37:12 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+int	g_signal;
+
+t_minishell	*get_mini(void)
+{
+	static t_minishell	*mini;
+
+	if (!mini)
+	{
+		mini = malloc(sizeof(t_minishell));
+		ft_memset(mini, 0, sizeof(t_minishell));
+	}
+	return (mini);
+}
+
 static void	ft_init_minishell(char **env)
 {
-	ft_memset(&g_minishell, 0, sizeof(t_minishell));
-	g_minishell.environ = env;
-	g_minishell.stdin = dup(0);
-	g_minishell.stdout = dup(1);
-	tcgetattr(STDIN_FILENO, &g_minishell.original_term);
+	t_minishell	*mini;
+
+	mini = get_mini();
+
+	ft_memset(mini, 0, sizeof(t_minishell));
+	mini->environ = env;
+	mini->stdin = dup(0);
+	mini->stdout = dup(1);
+	tcgetattr(STDIN_FILENO, &mini->original_term);
 }
 
 static void	ft_start_execution(void)
 {
 	signal(SIGQUIT, ft_sigquit_handler);
-	ft_init_tree(g_minishell.ast);
-	if (g_minishell.heredoc_sigint)
+	ft_init_tree(get_mini()->ast);
+	if (get_mini()->heredoc_sigint)
 	{
-		ft_clear_ast(&g_minishell.ast);
-		g_minishell.heredoc_sigint = false;
+		ft_clear_ast(&get_mini()->ast);
+		get_mini()->heredoc_sigint = false;
 	}
-	tcsetattr(STDIN_FILENO, TCSANOW, &g_minishell.original_term);
-	g_minishell.exit_s = ft_exec_node(g_minishell.ast, false);
-	ft_clear_ast(&g_minishell.ast);
+	tcsetattr(STDIN_FILENO, TCSANOW, &get_mini()->original_term);
+	get_mini()->exit_s = ft_exec_node(get_mini()->ast, false);
+	ft_clear_ast(&get_mini()->ast);
 }
 
-int	main(int argc, char **argv, char **env)
+int	main(int argc __attribute__((unused)), \
+			char **argv __attribute__((unused)), char **env)
 {
-	((void)argc, (void)argv);
+	int	exit_status;
+	
 	ft_init_minishell(env);
 	while (1)
 	{
+		g_signal = 0;
 		ft_init_signals();
-		g_minishell.line = readline(PROMPT);
-		//verificas se ha argumento
-		if (!g_minishell.line)
-			ft_clean_ms(),
-					ft_putstr_fd("exit\n", 1), exit(g_minishell.exit_s);
-		//se houver argumento coloca no historico
-		if (g_minishell.line[0])
-			add_history(g_minishell.line);
-		//tokenizaçao
-		g_minishell.tokens = ft_tokenize();
-		//verifica se nao ha tokenizacao, se nao continua
-		if (!g_minishell.tokens)
+		get_mini()->line = readline(PROMPT);
+		if (!get_mini()->line)
+			ft_clean_ms(), ft_putstr_fd("exit\n", 1), exit(get_mini()->exit_s);
+		if (get_mini()->line[0])
+			add_history(get_mini()->line);
+		get_mini()->tokens = ft_tokenize();
+		if (!get_mini()->tokens)
 			continue ;
-		//parser
-		g_minishell.ast = ft_parse();
-		//verifica se há erro no parse
-		if (g_minishell.parse_err.type)
-		{
+		get_mini()->ast = ft_parse();
+		if (get_mini()->parse_err.type)
 			ft_handle_parse_err();
-			continue ;
-		}
-		//execução
-		ft_start_execution();
+		else
+			ft_start_execution();
 	}
+	exit_status = get_mini()->exit_s;
 	ft_garbage_collector(NULL, true);
-	return (ft_clean_ms(), g_minishell.exit_s);
+	return (ft_clean_ms(), exit_status);
 }

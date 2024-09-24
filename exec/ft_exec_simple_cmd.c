@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec_simple_cmd.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 17:34:15 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/21 20:36:30 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/24 19:18:12 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	ft_reset_stds(bool piped)
 {
 	if (piped)
 		return ;
-	dup2(g_minishell.stdin, 0);
-	dup2(g_minishell.stdout, 1);
+	dup2(get_mini()->stdin, 0);
+	dup2(get_mini()->stdout, 1);
 }
 
 static int	ft_exec_child(t_node *node)
@@ -47,7 +47,7 @@ static int	ft_exec_child(t_node *node)
 	int		tmp_status;
 	int		fork_pid;
 
-	g_minishell.signint_child = true;
+	get_mini()->signint_child = true;
 	fork_pid = fork();
 	if (!fork_pid)
 	{
@@ -60,11 +60,11 @@ static int	ft_exec_child(t_node *node)
 			tmp_status = ft_err_msg(path_status.err);
 			(ft_clean_ms(), exit(tmp_status));
 		}
-		if (execve(path_status.path, node -> expanded_args, g_minishell.environ) == -1)
+		if (execve(path_status.path, node -> expanded_args, get_mini()->environ) == -1)
 			(ft_clean_ms(), exit(1));
 	}
 	waitpid(fork_pid, &tmp_status, 0);
-	g_minishell.signint_child = false;
+	get_mini()->signint_child = false;
 	return (ft_get_exit_status(tmp_status));
 }
 
@@ -77,14 +77,14 @@ int	ft_exec_simple_cmd(t_node *node, bool piped)
 		tmp_status = ft_check_redirection(node);
 			return (ft_reset_stds(piped), (tmp_status && ENO_GENERAL));
 	}	
-	// else if (ft_is_builtin((node -> expanded_args)[0]))
-	// {
-	// 	tmp_status = ft_check_redirection(node);
-	// 	if (tmp_status != ENO_SUCCESS)
-	// 		return (ft_reset_stds(piped), ENO_GENERAL);
-	// 	tmp_status = ft_exec_builtin(node -> expanded_args);
-	// 	return (ft_reset_stds(piped), tmp_status);
-	// }
+	else if (ft_is_builtin((node -> expanded_args)[0]))
+	{
+		tmp_status = ft_check_redirection(node);
+		if (tmp_status != ENO_SUCCESS)
+			return (ft_reset_stds(piped), ENO_GENERAL);
+		tmp_status = ft_exec_builtin(node -> expanded_args);
+		return (ft_reset_stds(piped), tmp_status);
+	}
 	else
 		return (ft_exec_child(node));
 }

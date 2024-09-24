@@ -14,7 +14,7 @@
 
 t_node	*ft_term(void)
 {
-	if (g_minishell.parse_err.type)
+	if (get_mini()->parse_err.type)
 		return (NULL);
 	else
 		return (ft_get_simple_cmd());
@@ -27,16 +27,16 @@ t_node	*ft_expression(int min_prec)
 	int				n_prec;
 	t_token_type	op;
 
-	if (g_minishell.parse_err.type || !g_minishell.curr_token)
+	if (get_mini()->parse_err.type || !get_mini()->curr_token)
 		return (NULL);
 	left = ft_term();
 	if (!left)
 		return (NULL);
 	while (ft_curr_token_is_binop() && ft_curr_token_prec() >= min_prec)
 	{
-		op = g_minishell.curr_token->type;
+		op = get_mini()->curr_token->type;
 		ft_get_next_token();
-		if (!g_minishell.curr_token)
+		if (!get_mini()->curr_token)
 			return (ft_set_parse_err(E_SYNTAX), left);
 		n_prec = ft_prec(op) + 1;
 		right = ft_expression(n_prec);
@@ -53,7 +53,7 @@ t_node	*ft_combine(t_token_type op, t_node *left, t_node *right)
 {
 	t_node	*node;
 
-	if (g_minishell.parse_err.type)
+	if (get_mini()->parse_err.type)
 		return (NULL);
 	node = ft_new_node(ft_get_node_type(op));
 	if (!node)
@@ -67,9 +67,9 @@ t_node	*ft_parse(void)
 {
 	t_node	*ast;
 
-	g_minishell.curr_token = g_minishell.tokens;
+	get_mini()->curr_token = get_mini()->tokens;
 	ast = ft_expression(0);
-	if (g_minishell.curr_token)
+	if (get_mini()->curr_token)
 		return (ft_set_parse_err(E_SYNTAX), ast);
 	return (ast);
 }
