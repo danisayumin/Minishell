@@ -12,9 +12,10 @@ BUILTINS	:=	builtins/echo.c \
 				builtins/env.c \
 				builtins/exit.c \
 				builtins/pwd.c \
-				builtins/cd.c
+				builtins/cd.c \
+				builtins/unset.c
 #builtins/export.c \
-#builtins/unset.c
+
 
 
 CLEANING	:=	clear.c
