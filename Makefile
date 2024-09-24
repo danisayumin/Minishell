@@ -11,8 +11,8 @@ BUILTINS	:=	builtins/echo.c \
 				builtins/env_utils.c \
 				builtins/env.c \
 				builtins/exit.c \
+				builtins/pwd.c
 #builtins/export.c \
-#builtins/pwd.c \
 #builtins/unset.c
 #builtins/cd.c \
 

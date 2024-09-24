@@ -119,7 +119,7 @@ void	ft_exit(char **args);
 //int		ft_export(char **argv);
 
 // * pwd.c *******************************************************************
-//int		ft_pwd(void);
+int		ft_pwd(void);
 
 // * unset.c *****************************************************************
 //int		ft_unset(char **args);
