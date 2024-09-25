@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 17:02:51 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/25 16:21:14 by dsayumi-         ###   ########.fr       */
+/*   Updated: 2024/09/25 19:06:31 by joscarlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void ft_exec_pipe_child(t_node *node, int pfds[2], t_ast_direction direction)
+static void
+	ft_exec_pipe_child(t_node *node, int pfds[2], t_ast_direction direction)
 {
-	int status;
+	int	status;
 
 	if (direction == TD_LEFT)
 	{
@@ -39,9 +40,9 @@ int	ft_get_exit_status(int status)
 	return (WEXITSTATUS(status));
 }
 
-static int ft_exec_pipeline(t_node *tree)
+static int	ft_exec_pipeline(t_node *tree)
 {
-	int status;
+	int	status;
 	int	pfds[2];
 	int	pid_l;
 	int	pid_r;
@@ -58,7 +59,8 @@ static int ft_exec_pipeline(t_node *tree)
 			ft_exec_pipe_child(tree->right, pfds, TD_RIGHT);
 		else
 		{
-			(close(pfds[0]), close(pfds[1]), waitpid(pid_l, &status, 0), waitpid(pid_r, &status, 0));
+			(close(pfds[0]), close(pfds[1]),
+				waitpid(pid_l, &status, 0), waitpid(pid_r, &status, 0));
 			get_mini()->signint_child = false;
 			return (ft_get_exit_status(status));
 		}
@@ -85,7 +87,7 @@ int	ft_exec_node(t_node *tree, bool piped)
 	{
 		status = ft_exec_node(tree->left, false);
 		if (status == ENO_SUCCESS)
-				return (status);
+			return (status);
 		return (ft_exec_node(tree->right, false));
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 20:09:05 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/24 20:28:16 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/25 18:46:39 by joscarlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ static int	ft_change_pwd(void)
 static int	ft_cd_home(void)
 {
 	char	*home;
-	
+
 	ft_update_envlst("OLDPWD", ft_get_envlst_val("PWD"), false);
 	home = ft_get_envlst_val("HOME");
 	if (!home)
 		return (ft_putstr_fd("minishell: cd: HOME not set\n", 2), 1);
-	if(chdir(home) == ENO_SUCCESS)
+	if (chdir(home) == ENO_SUCCESS)
 		return (ft_update_envlst("PWD", home, false), 0);
 	return (1);
 }
