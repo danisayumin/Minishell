@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_builtins.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 18:48:22 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/24 20:25:17 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/25 16:28:51 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ int	ft_exec_builtin(char **args)
 		return (ft_env());
 	if (ft_strcmp(args[0], "pwd") == 0)
 		return (ft_pwd());
-	// if (ft_strcmp(args[0], "export") == 0)
-	// 	return (ft_export(args));
-	// if (ft_strcmp(args[0], "unset") == 0)
-	// 	return (ft_unset(args));
+	if (ft_strcmp(args[0], "export") == 0)
+		return (ft_export(args));
+	if (ft_strcmp(args[0], "unset") == 0)
+		return (ft_unset(args));
 	ft_exit(args);
 	return (ENO_GENERAL);
 }

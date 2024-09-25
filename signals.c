@@ -6,7 +6,7 @@
 /*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 20:38:36 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/24 19:12:58 by dsayumi-         ###   ########.fr       */
+/*   Updated: 2024/09/24 19:50:01 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_sigquit_handler(int num)
 void ft_init_signals(void)
 {
 	// struct termios	term;
-	
+
 	// term = get_mini()->original_term;
 	// term.c_lflag &= ~ECHOCTL;
 	// tcsetattr(STDERR_FILENO, TCSANOW, &term);

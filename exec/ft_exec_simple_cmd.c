@@ -6,7 +6,7 @@
 /*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 17:34:15 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/24 19:18:12 by dsayumi-         ###   ########.fr       */
+/*   Updated: 2024/09/25 16:28:24 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static int	ft_exec_child(t_node *node)
 int	ft_exec_simple_cmd(t_node *node, bool piped)
 {
 	int	tmp_status;
-	
+
 	if(!node -> expanded_args)
 	{
 		tmp_status = ft_check_redirection(node);

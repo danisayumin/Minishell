@@ -3,41 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 20:37:20 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/24 20:47:59 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/25 16:38:01 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+int		ft_check_key(char *str)
+{
+	size_t	i;
+
+	i = 0;
+	if (!ft_isalpha(str[i]) && str[i] != '_')
+		return (0);
+	i++;
+	while (str[i])
+	{
+		if (!ft_isalnum(str[i]) && str[i] != '_')
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 static void	ft_unset_helper(char *key)
 {
 	t_env	*current;
 	t_env	*prev;
-	
+
 	prev = NULL;
 	current = get_mini()->envlst;
 	while (current)
 	{
 		if (!ft_strcmp(key, current->key))
 		{
-			if (prev)
-				prev->next;
-			else
-				get_mini()->envlst = current->next;
+			// if (prev)
+			// 	prev->next;
+			// else
+			get_mini()->envlst = current->next;
 			free(current);
 			return ;
 		}
 		prev = current;
 		current = current->next;
 	}
-	
 }
 
-int		ft_unset(char **args)
+int	ft_unset(char **args)
 {
 	int		i;
 	bool	err;

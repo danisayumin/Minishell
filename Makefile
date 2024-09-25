@@ -13,10 +13,8 @@ BUILTINS	:=	builtins/echo.c \
 				builtins/exit.c \
 				builtins/pwd.c \
 				builtins/cd.c \
-				builtins/unset.c
-#builtins/export.c \
-
-
+				builtins/unset.c \
+				builtins/export.c
 
 CLEANING	:=	clear.c
 
@@ -52,7 +50,6 @@ TOKENIZING	:=	tokens/tokenizer_appenders.c \
 				tokens/tokenizer.c \
 				tokens/ft_isspace.c
 
-
 SRCS		:=	$(PARSING)\
 				$(TOKENIZING)\
 				$(BUILTINS)\
@@ -60,7 +57,6 @@ SRCS		:=	$(PARSING)\
 				$(EXEC)\
 				$(EXPANDER)\
 				main.c signals.c general_utils.c ft_strcmp.c
-
 
 OBJS		:=	$(SRCS:.c=.o)
 

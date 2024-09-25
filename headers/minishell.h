@@ -115,8 +115,8 @@ int		ft_env(void);
 void	ft_exit(char **args);
 
 // * export.c ****************************************************************
-//int		ft_check_key(char *str);
-//int		ft_export(char **argv);
+int		ft_check_key(char *str);
+int		ft_export(char **argv);
 
 // * pwd.c *******************************************************************
 int		ft_pwd(void);

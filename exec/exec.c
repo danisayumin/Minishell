@@ -6,7 +6,7 @@
 /*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 17:02:51 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/24 19:12:58 by dsayumi-         ###   ########.fr       */
+/*   Updated: 2024/09/25 16:21:14 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static int ft_exec_pipeline(t_node *tree)
 int	ft_exec_node(t_node *tree, bool piped)
 {
 	int	status;
-	
+
 	if (!tree)
 		return (1);
 	if (tree->type == N_PIPE)
