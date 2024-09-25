@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_heredoc_expander.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 20:30:59 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/24 19:12:58 by dsayumi-         ###   ########.fr       */
+/*   Updated: 2024/09/25 19:52:47 by joscarlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	ft_heredoc_expand_writer(char *str, size_t i, int fd)
 	if (i != start)
 	{
 		tmp = ft_garbage_collector(ft_substr(str, start, i), false);
-		// tmp = ft_get_envlst_val(tmp);
+		tmp = ft_get_envlst_val(tmp);
 		if (tmp)
 			ft_putstr_fd(tmp, fd);
 	}

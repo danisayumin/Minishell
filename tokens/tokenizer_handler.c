@@ -6,7 +6,7 @@
 /*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 21:45:29 by danielasayu       #+#    #+#             */
-/*   Updated: 2024/09/21 16:50:31 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/25 19:56:45 by joscarlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_token	*ft_tokenization_handler(char *line)
 			|| !ft_strncmp(line, "|", 1) || !ft_strncmp(line, "&&", 2))
 			error = (!ft_handle_separator(&line, &token_list) && 1);
 		else
-			error = (!ft_append_identifier(&line, &token_list) && 1);//todo
+			error = (!ft_append_identifier(&line, &token_list) && 1);
 	}
 	return (token_list);
 }

@@ -6,7 +6,7 @@
 /*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 17:00:57 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/22 17:11:17 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/25 19:52:40 by joscarlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,19 +46,20 @@ static char	**ft_globber_helper(char *str)
 		returned = (char **)ft_calloc(match_count + 1, sizeof(char *));
 		match_count = 0;
 		while (ft_set_direntry(&entry, dir) && entry)
-			if (ft_match_star(str, entry->d_name) && ft_matches_visibility(str, entry->d_name))
+			if (ft_match_star(str, entry->d_name)
+				&& ft_matches_visibility(str, entry->d_name))
 				returned[match_count++] = ft_strdup(entry->d_name);
 		closedir(dir);
 	}
 	return (returned);
 }
 
-char **ft_globber(char **expanded)
+char	**ft_globber(char **expanded)
 {
 	size_t	i;
 	size_t	expanded_len;
-	char ***globbed;
-	
+	char	***globbed;
+
 	expanded_len = ft_str_arr_len(expanded);
 	globbed = (char ***)ft_calloc(expanded_len + 1, sizeof(char *));
 	i = 0;
