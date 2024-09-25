@@ -6,7 +6,7 @@
 /*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:16:33 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/10 19:17:331 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/25 19:55:49 by joscarlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,113 +94,113 @@ typedef struct s_minishell
 
 /* ****************************   BUILTINS   ****************************** */
 // * cd.c ********************************************************************
-int		ft_cd(char *path);
+int			ft_cd(char *path);
 
 // * echo.c ******************************************************************
-int		ft_echo(char **args);
+int			ft_echo(char **args);
 
 // * env_utils.c *************************************************************
-char	*ft_get_envlst_val(char *key);
-bool	ft_env_entry_exists(char *key);
-void	ft_update_envlst(char *key, char *value, bool create);
+char		*ft_get_envlst_val(char *key);
+bool		ft_env_entry_exists(char *key);
+void		ft_update_envlst(char *key, char *value, bool create);
 
 // * env.c *******************************************************************
-char	*ft_extract_key(char *str);
-char	*ft_extract_value(char *str);
-void	ft_init_envlst(void);
-int		ft_env(void);
+char		*ft_extract_key(char *str);
+char		*ft_extract_value(char *str);
+void		ft_init_envlst(void);
+int			ft_env(void);
 
 // * exit.c ******************************************************************
-void	ft_exit(char **args);
+void		ft_exit(char **args);
 
 // * export.c ****************************************************************
-int		ft_check_key(char *str);
-int		ft_export(char **argv);
+int			ft_check_key(char *str);
+int			ft_export(char **argv);
 
 // * pwd.c *******************************************************************
-int		ft_pwd(void);
+int			ft_pwd(void);
 
 // * unset.c *****************************************************************
-int		ft_unset(char **args);
+int			ft_unset(char **args);
 
 /* ****************************   CLEANING   ****************************** */
 // * ft_clean_ms.c ***********************************************************
-void	ft_clean_ms(void);
-void	ft_free_char2(char **tofree);
-void	ft_free_char3(char ***tofree);
+void		ft_clean_ms(void);
+void		ft_free_char2(char **tofree);
+void		ft_free_char3(char ***tofree);
 
 /* ******************************   EXEC   ******************************** */
 // * error_msg.c *************************************************************
-int		ft_err_msg(t_err err);
+int			ft_err_msg(t_err err);
 
 // * exec_builtin.c **********************************************************
-int		ft_exec_builtin(char **args);
-bool	ft_is_builtin(char *arg);
+int			ft_exec_builtin(char **args);
+bool		ft_is_builtin(char *arg);
 
 // * exec_redirect.c *********************************************************
-int		ft_out(t_io_node *io_list, int *status);
-int		ft_in(t_io_node *io_list, int *status);
-int		ft_append(t_io_node *io_list, int *status);
+int			ft_out(t_io_node *io_list, int *status);
+int			ft_in(t_io_node *io_list, int *status);
+int			ft_append(t_io_node *io_list, int *status);
 
 // * exec_utils.c ************************************************************
-void	*ft_garbage_collector(void *ptr, bool clean);
-bool	ft_is_delimiter(char *delimiter, char *str);
+void		*ft_garbage_collector(void *ptr, bool clean);
+bool		ft_is_delimiter(char *delimiter, char *str);
 
 // * exec.c ******************************************************************
-int		ft_get_exit_status(int status);
-int		ft_exec_node(t_node *tree, bool piped);
+int			ft_get_exit_status(int status);
+int			ft_exec_node(t_node *tree, bool piped);
 
 // * exist_check.c ***********************************************************
-t_err	ft_check_exec(char *file, bool cmd);
-t_err	ft_check_read(char *file);
-t_err	ft_check_write(char *file);
+t_err		ft_check_exec(char *file, bool cmd);
+t_err		ft_check_read(char *file);
+t_err		ft_check_write(char *file);
 
 // * ft_exec_simple_cmd.c ****************************************************
-int		ft_check_redirection(t_node *node);
-void	ft_reset_stds(bool piped);
-int		ft_exec_simple_cmd(t_node *node, bool piped);
+int			ft_check_redirection(t_node *node);
+void		ft_reset_stds(bool piped);
+int			ft_exec_simple_cmd(t_node *node, bool piped);
 
 // * ft_get_path.c ***********************************************************
-t_path	ft_get_path(char *cmd);
+t_path		ft_get_path(char *cmd);
 
 // * init_tree.c *************************************************************
-void	ft_init_tree(t_node *node);
-void	ft_heredoc(t_io_node *io, int p[2]);
+void		ft_init_tree(t_node *node);
+void		ft_heredoc(t_io_node *io, int p[2]);
 
 /* ****************************   EXPANDER   ****************************** */
 // * ft_asterisker.c *********************************************************
-bool	ft_match_star(char *pattern, char *str);
+bool		ft_match_star(char *pattern, char *str);
 
 // * ft_clean_empty_strs.c ***************************************************
-char	*ft_clean_empty_strs(char *str);
+char		*ft_clean_empty_strs(char *str);
 
 // * ft_expand_utils.c *******************************************************
-bool	ft_is_valid_char(char c);
-char	*ft_handle_normal_str(char *str, size_t *i);
-char	*ft_handle_squotes(char *str, size_t *i);
-char	*ft_handle_dquotes(char *str, size_t *i);
+bool		ft_is_valid_char(char c);
+char		*ft_handle_normal_str(char *str, size_t *i);
+char		*ft_handle_squotes(char *str, size_t *i);
+char		*ft_handle_dquotes(char *str, size_t *i);
 
 // * ft_expand.c *************************************************************
-char	*ft_handle_dollar(char *str, size_t *i);
-char	**ft_expand(char *str);
+char		*ft_handle_dollar(char *str, size_t *i);
+char		**ft_expand(char *str);
 
 // * ft_expander_split.c *****************************************************
-char	**ft_expander_split(char const *s);
+char		**ft_expander_split(char const *s);
 
 // * ft_globber_utils.c ******************************************************
-bool	ft_contains_asterisk(char *str);
-size_t	ft_str_arr_len(char **str_arr);
-size_t	ft_match_count(char *pattern);
-char	**ft_join_str_arrs(char ***str_arrs);
+bool		ft_contains_asterisk(char *str);
+size_t		ft_str_arr_len(char **str_arr);
+size_t		ft_match_count(char *pattern);
+char		**ft_join_str_arrs(char ***str_arrs);
 
 // * ft_globber.c ************************************************************
-char	**ft_globber(char **expanded);
+char		**ft_globber(char **expanded);
 
 // * ft_strip_quotes.c *******************************************************
-char	*ft_strip_quotes(char *str);
+char		*ft_strip_quotes(char *str);
 
 // * heredoc_expander.c ******************************************************
-void	ft_heredoc_expander(char *str, int fd);
+void		ft_heredoc_expander(char *str, int fd);
 
 /* ****************************   MINISHELL   ***************************** */
 // * main_signals.c **********************************************************
