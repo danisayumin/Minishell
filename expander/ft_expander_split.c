@@ -6,7 +6,7 @@
 /*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 18:04:59 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/25 19:27:39 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/25 19:34:41 by joscarlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	ft_skip_word(char const *s, size_t *i)
 	}
 }
 
-static char **ft_allocater(char const *s, char **strs)
+static char	**ft_allocater(char const *s, char **strs)
 {
 	size_t	start;
 	size_t	i;
