@@ -6,7 +6,7 @@
 /*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 17:56:43 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/22 17:59:02 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/25 19:27:02 by joscarlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ static void	ft_handle_pattern_quotes(char **pattern, char *quotes)
 	}
 }
 
-static bool	ft_handle_stars(char **pattern, char **last_wildcard, char **last_match, char *str)
+static bool	ft_handle_stars(char **pattern, char **last_wildcard,
+	char **last_match, char *str)
 {
 	while (**pattern == '*')
 		(*pattern)++;
@@ -40,7 +41,8 @@ static bool	ft_handle_stars(char **pattern, char **last_wildcard, char **last_ma
 	return (false);
 }
 
-static bool	ft_pattern_match_exists(char **pattern, char **last_wildcard, char **last_match, char **str)
+static bool	ft_pattern_match_exists(char **pattern, char **last_wildcard,
+	char **last_match, char **str)
 {
 	if (**pattern == **str)
 	{
@@ -70,7 +72,8 @@ bool	ft_match_star(char *pattern, char *str)
 	while (*str)
 	{
 		ft_handle_pattern_quotes(&pattern, &quotes);
-		if (*pattern == '*' && !quotes && ft_handle_stars(&pattern, &last_wildcard, &last_match, str))
+		if (*pattern == '*' && !quotes
+			&& ft_handle_stars(&pattern, &last_wildcard, &last_match, str))
 			return (true);
 		else if (!ft_pattern_match_exists(
 				&pattern, &last_wildcard, &last_match, &str))

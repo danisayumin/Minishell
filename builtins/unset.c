@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 20:37:20 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/25 16:38:01 by dsayumi-         ###   ########.fr       */
+/*   Updated: 2024/09/25 19:23:13 by joscarlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		ft_check_key(char *str)
+int	ft_check_key(char *str)
 {
 	size_t	i;
 
@@ -40,10 +40,10 @@ static void	ft_unset_helper(char *key)
 	{
 		if (!ft_strcmp(key, current->key))
 		{
-			// if (prev)
-			// 	prev->next;
-			// else
-			get_mini()->envlst = current->next;
+			if (prev)
+				prev->next;
+			else
+				get_mini()->envlst = current->next;
 			free(current);
 			return ;
 		}
@@ -71,7 +71,8 @@ int	ft_unset(char **args)
 			err = true;
 		}
 		else
-			ft_unset_helper(ft_garbage_collector(ft_extract_key(args[i]), false));
+			ft_unset_helper(
+				ft_garbage_collector(ft_extract_key(args[i]), false));
 		i++;
 	}
 	return (err);

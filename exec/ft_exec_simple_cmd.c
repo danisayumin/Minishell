@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec_simple_cmd.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 17:34:15 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/25 16:28:24 by dsayumi-         ###   ########.fr       */
+/*   Updated: 2024/09/25 19:01:42 by joscarlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,18 @@ int	ft_check_redirection(t_node *node)
 {
 	t_io_node	*tmp_io;
 	int			tmp_status;
-	
+
 	tmp_io = node->io_list;
 	while (tmp_io)
 	{
-		if (tmp_io->type == IO_OUT && ft_out(tmp_io, &tmp_status) != ENO_SUCCESS)
+		if (tmp_io->type == IO_OUT
+			&& ft_out(tmp_io, &tmp_status) != ENO_SUCCESS)
 			return (tmp_status);
-		else if (tmp_io->type == IO_IN && ft_in(tmp_io, &tmp_status) != ENO_SUCCESS)
+		else if (tmp_io->type == IO_IN
+			&& ft_in(tmp_io, &tmp_status) != ENO_SUCCESS)
 			return (tmp_status);
-		else if (tmp_io->type == IO_APPEND && ft_append(tmp_io, &tmp_status) != ENO_SUCCESS)
+		else if (tmp_io->type == IO_APPEND
+			&& ft_append(tmp_io, &tmp_status) != ENO_SUCCESS)
 			return (tmp_status);
 		else if (tmp_io->type == IO_HEREDOC)
 			(dup2(tmp_io->here_doc, 0), close(tmp_io->here_doc));
@@ -60,7 +63,8 @@ static int	ft_exec_child(t_node *node)
 			tmp_status = ft_err_msg(path_status.err);
 			(ft_clean_ms(), exit(tmp_status));
 		}
-		if (execve(path_status.path, node -> expanded_args, get_mini()->environ) == -1)
+		if (execve(path_status.path, node -> expanded_args,
+				get_mini()->environ) == -1)
 			(ft_clean_ms(), exit(1));
 	}
 	waitpid(fork_pid, &tmp_status, 0);
@@ -72,10 +76,10 @@ int	ft_exec_simple_cmd(t_node *node, bool piped)
 {
 	int	tmp_status;
 
-	if(!node -> expanded_args)
+	if (!node -> expanded_args)
 	{
 		tmp_status = ft_check_redirection(node);
-			return (ft_reset_stds(piped), (tmp_status && ENO_GENERAL));
+		return (ft_reset_stds(piped), (tmp_status && ENO_GENERAL));
 	}	
 	else if (ft_is_builtin((node -> expanded_args)[0]))
 	{

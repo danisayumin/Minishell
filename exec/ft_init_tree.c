@@ -3,31 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_tree.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 20:17:34 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/24 19:12:58 by dsayumi-         ###   ########.fr       */
+/*   Updated: 2024/09/25 19:24:53 by joscarlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void ft_heredoc_sigint_handler(int signum)
+static void	ft_heredoc_sigint_handler(int signum)
 {
 	(void)signum;
 	ft_clean_ms();
 	exit(SIGINT);
 }
 
-void ft_heredoc(t_io_node *io, int p[2])
+void	ft_heredoc(t_io_node *io, int p[2])
 {
 	char	*line;
-	// char	*quotes;
-	
+	char	*quotes;
+
 	signal(SIGINT, ft_heredoc_sigint_handler);
-	// quotes = io->value;
-	// while (*quotes && *quotes != '"' && *quotes != '\'')
-	// 	quotes++;
+	quotes = io->value;
+	while (*quotes && *quotes != '"' && *quotes != '\'')
+		quotes++;
 	while (1)
 	{
 		line = readline("> ");
@@ -35,8 +35,8 @@ void ft_heredoc(t_io_node *io, int p[2])
 			break ;
 		if (ft_is_delimiter(io->value, line))
 			break ;
-		// if (!*quotes)
-		// 	ft_heredoc_expander(line, p[1])
+		if (!*quotes)
+			ft_heredoc_expander(line, p[1]);
 		else
 		{
 			ft_putstr_fd(line, p[1]);
