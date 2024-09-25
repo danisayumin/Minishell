@@ -6,7 +6,7 @@
 /*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 20:37:20 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/25 18:48:52 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/25 19:23:13 by joscarlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ static void	ft_unset_helper(char *key)
 	{
 		if (!ft_strcmp(key, current->key))
 		{
-			// if (prev)
-			// 	prev->next;
-			// else
-			get_mini()->envlst = current->next;
+			if (prev)
+				prev->next;
+			else
+				get_mini()->envlst = current->next;
 			free(current);
 			return ;
 		}
