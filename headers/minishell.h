@@ -91,7 +91,6 @@ typedef struct s_minishell
 	struct termios	original_term;
 }	t_minishell;
 
-extern int	g_signal;
 
 /* ****************************   BUILTINS   ****************************** */
 // * cd.c ********************************************************************

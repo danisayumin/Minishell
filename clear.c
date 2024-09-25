@@ -6,7 +6,7 @@
 /*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 20:30:28 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/24 19:32:54 by dsayumi-         ###   ########.fr       */
+/*   Updated: 2024/09/25 19:36:25 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	ft_clear_envlst(void)
 	get_mini()->envlst = NULL;
 }
 
-void ft_clean_ms(void)
+void	ft_clean_ms(void)
 {
 	ft_garbage_collector(NULL, true);
 	ft_clear_ast(&get_mini()->ast);

@@ -6,7 +6,7 @@
 /*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 20:38:36 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/25 19:21:06 by dsayumi-         ###   ########.fr       */
+/*   Updated: 2024/09/25 19:57:08 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,11 @@ void	ft_sigquit_handler(int num)
 	ft_putstr_fd("Quit: 3\n", 1);
 }
 
-void ft_init_signals(void)
+void	ft_init_signals(void)
 {
 	struct termios	term;
 
 	term = get_mini()->original_term;
-	// term.c_lflag &= ~ECHOCTL;
 	tcsetattr(STDERR_FILENO, TCSANOW, &term);
 	get_mini()->heredoc_sigint = false;
 	get_mini()->signint_child = false;

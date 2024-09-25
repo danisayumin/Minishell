@@ -6,13 +6,11 @@
 /*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:00:59 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/25 16:09:34 by dsayumi-         ###   ########.fr       */
+/*   Updated: 2024/09/25 19:57:45 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	g_signal;
 
 t_minishell	*get_mini(void)
 {
@@ -41,6 +39,8 @@ static void	ft_init_minishell(char **env)
 
 static void	ft_start_execution(void)
 {
+	int	result;
+
 	signal(SIGQUIT, ft_sigquit_handler);
 	ft_init_tree(get_mini()->ast);
 	if (get_mini()->heredoc_sigint)
@@ -49,7 +49,8 @@ static void	ft_start_execution(void)
 		get_mini()->heredoc_sigint = false;
 	}
 	tcsetattr(STDIN_FILENO, TCSANOW, &get_mini()->original_term);
-	get_mini()->exit_s = ft_exec_node(get_mini()->ast, false);
+	result = ft_exec_node(get_mini()->ast, false);
+	get_mini()->exit_s = result;
 	ft_clear_ast(&get_mini()->ast);
 }
 
@@ -57,7 +58,7 @@ int	main(int argc __attribute__((unused)), \
 			char **argv __attribute__((unused)), char **env)
 {
 	int	exit_status;
-	
+
 	ft_init_minishell(env);
 	while (1)
 	{
