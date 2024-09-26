@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec_simple_cmd.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 17:34:15 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/25 19:01:42 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/26 18:58:38 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void	ft_reset_stds(bool piped)
 {
 	if (piped)
 		return ;
-	dup2(get_mini()->stdin, 0);
-	dup2(get_mini()->stdout, 1);
+	// dup2(get_mini()->stdin, 0);
+	// dup2(get_mini()->stdout, 1);
 }
 
 static int	ft_exec_child(t_node *node)
@@ -63,6 +63,7 @@ static int	ft_exec_child(t_node *node)
 			tmp_status = ft_err_msg(path_status.err);
 			(ft_clean_ms(), exit(tmp_status));
 		}
+		printf("path_status.path: %s\n", path_status.path);
 		if (execve(path_status.path, node -> expanded_args,
 				get_mini()->environ) == -1)
 			(ft_clean_ms(), exit(1));

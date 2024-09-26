@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_path.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 19:42:02 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/25 19:52:01 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/26 19:04:32 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ t_path	ft_get_path(char *cmd)
 	if (ft_strnstr(cmd, "/", ft_strlen(cmd)))
 		return ((t_path){ft_check_exec(cmd, false), cmd});
 	value = ft_get_envlst_val("PATH");
+	printf("value: %s\n", value);
 	if (value)
 		return (ft_get_env_path(value, cmd));
 	return ((t_path){(t_err){ENO_NOT_FOUND, ERRMSG_NO_SUCH_FILE, cmd}, NULL});

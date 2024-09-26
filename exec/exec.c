@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 17:02:51 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/25 19:06:31 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/26 18:47:36 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int	ft_exec_pipeline(t_node *tree)
 	else
 	{
 		pid_r = fork();
-		if (!pid_l)
+		if (!pid_r)
 			ft_exec_pipe_child(tree->right, pfds, TD_RIGHT);
 		else
 		{

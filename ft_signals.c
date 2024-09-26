@@ -6,11 +6,17 @@
 /*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 19:37:41 by dsayumi-          #+#    #+#             */
-/*   Updated: 2024/09/25 19:38:50 by dsayumi-         ###   ########.fr       */
+/*   Updated: 2024/09/26 17:57:00 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	ft_sigquit_handler(int num)
+{
+	(void)num;
+	ft_putstr_fd("Quit: 3\n", 1);
+}
 
 void	ft_clear_line(void)
 {

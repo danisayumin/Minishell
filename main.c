@@ -6,7 +6,7 @@
 /*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:00:59 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/25 20:03:35 by dsayumi-         ###   ########.fr       */
+/*   Updated: 2024/09/26 18:49:02 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,11 @@ t_minishell	*get_mini(void)
 
 static void	ft_init_minishell(char **env)
 {
-	t_minishell	*mini;
-
-	mini = get_mini();
-
-	ft_memset(mini, 0, sizeof(t_minishell));
-	mini->environ = env;
-	mini->stdin = dup(0);
-	mini->stdout = dup(1);
-	tcgetattr(STDIN_FILENO, &mini->original_term);
+	ft_memset(get_mini(), 0, sizeof(t_minishell));
+	get_mini()->environ = env;
+	// get_mini()->stdin = dup(0);
+	// get_mini()->stdout = dup(1);
+	tcgetattr(STDIN_FILENO, &get_mini()->original_term);
 }
 
 static void	ft_start_execution(void)

@@ -6,7 +6,7 @@
 /*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 20:30:28 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/25 19:36:25 by dsayumi-         ###   ########.fr       */
+/*   Updated: 2024/09/26 18:51:28 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_clean_ms(void)
 	ft_clear_envlst();
 	rl_clear_history();
 	tcsetattr(STDIN_FILENO, TCSANOW, &get_mini()->original_term);
-	free(get_mini());
+	//free(get_mini());
 }
 
 void	ft_free_char2(char **tofree)
