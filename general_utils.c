@@ -6,7 +6,7 @@
 /*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 16:46:40 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/22 16:47:18 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/26 15:52:38 by joscarlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,22 @@ char	*ft_strjoin_f(char *s1, char *s2)
 		joined[i++] = s2[j++];
 	joined[i] = 0;
 	return (free(s1), free(s2), joined);
+}
+
+int	ft_isspace(char c)
+{
+	if (c == '\t' || c == '\n' || c == '\v'
+		|| c == '\f' || c == '\r' || c == ' ')
+		return (1);
+	return (0);
+}
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	size_t	i;
+
+	i = 0;
+	while (s1[i] && s2[i] && s1[i] == s2[i])
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
