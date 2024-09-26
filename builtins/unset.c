@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 20:37:20 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/25 19:23:13 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/25 20:06:17 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,7 @@ static void	ft_unset_helper(char *key)
 	{
 		if (!ft_strcmp(key, current->key))
 		{
-			if (prev)
-				prev->next;
-			else
-				get_mini()->envlst = current->next;
+			get_mini()->envlst = current->next;
 			free(current);
 			return ;
 		}

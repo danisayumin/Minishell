@@ -6,7 +6,7 @@
 /*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:00:59 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/25 19:57:45 by dsayumi-         ###   ########.fr       */
+/*   Updated: 2024/09/25 20:03:35 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,10 @@ int	main(int argc __attribute__((unused)), \
 	ft_init_minishell(env);
 	while (1)
 	{
-		g_signal = 0;
 		ft_init_signals();
 		get_mini()->line = readline(PROMPT);
 		if (!get_mini()->line)
-			ft_clean_ms(), ft_putstr_fd("exit\n", 1), exit(get_mini()->exit_s);
+			(ft_clean_ms(), ft_putstr_fd("exit\n", 1), exit(get_mini()->exit_s));
 		if (get_mini()->line[0])
 			add_history(get_mini()->line);
 		get_mini()->tokens = ft_tokenize();
