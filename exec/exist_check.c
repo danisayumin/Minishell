@@ -6,7 +6,7 @@
 /*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 19:30:57 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/21 19:40:16 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/26 20:31:24 by joscarlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_err	ft_check_write(char *file)
 	if (access(file, F_OK) == 0)
 	{
 		if (access(file, W_OK) == -1)
-			return ((t_err){ENO_CANT_EXEC, ERRMSG_PERM_DENIED, file});
+			return ((t_err){ENO_GENERAL, ERRMSG_PERM_DENIED, file});
 		return ((t_err){ENO_SUCCESS, 42, NULL});
 	}
 	return ((t_err){ENO_NOT_FOUND, ERRMSG_NO_SUCH_FILE, file});
