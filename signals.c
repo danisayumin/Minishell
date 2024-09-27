@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 20:38:36 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/25 19:57:08 by dsayumi-         ###   ########.fr       */
+/*   Updated: 2024/09/26 22:23:48 by joscarlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_init_signals(void)
 	struct termios	term;
 
 	term = get_mini()->original_term;
-	tcsetattr(STDERR_FILENO, TCSANOW, &term);
+	tcsetattr(STDIN_FILENO, TCSANOW, &term);
 	get_mini()->heredoc_sigint = false;
 	get_mini()->signint_child = false;
 	signal(SIGINT, ft_sigint_handler);
