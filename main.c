@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:00:59 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/26 22:09:20 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/27 13:58:07 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static void	ft_init_minishell(char **env)
 	mini = get_mini();
 	ft_memset(mini, 0, sizeof(t_minishell));
 	mini->environ = env;
+	ft_init_envlst();
 	mini->stdin = dup(STDIN_FILENO);
 	mini->stdout = dup(STDOUT_FILENO);
 	tcgetattr(STDIN_FILENO, &mini->original_term);
