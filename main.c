@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:00:59 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/25 20:03:35 by dsayumi-         ###   ########.fr       */
+/*   Updated: 2024/09/26 22:09:20 by joscarlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,15 @@ static void	ft_init_minishell(char **env)
 	t_minishell	*mini;
 
 	mini = get_mini();
-
 	ft_memset(mini, 0, sizeof(t_minishell));
 	mini->environ = env;
-	mini->stdin = dup(0);
-	mini->stdout = dup(1);
+	mini->stdin = dup(STDIN_FILENO);
+	mini->stdout = dup(STDOUT_FILENO);
 	tcgetattr(STDIN_FILENO, &mini->original_term);
 }
 
 static void	ft_start_execution(void)
 {
-	int	result;
-
 	signal(SIGQUIT, ft_sigquit_handler);
 	ft_init_tree(get_mini()->ast);
 	if (get_mini()->heredoc_sigint)
@@ -49,16 +46,13 @@ static void	ft_start_execution(void)
 		get_mini()->heredoc_sigint = false;
 	}
 	tcsetattr(STDIN_FILENO, TCSANOW, &get_mini()->original_term);
-	result = ft_exec_node(get_mini()->ast, false);
-	get_mini()->exit_s = result;
+	get_mini()->exit_s = ft_exec_node(get_mini()->ast, false);
 	ft_clear_ast(&get_mini()->ast);
 }
 
 int	main(int argc __attribute__((unused)), \
 			char **argv __attribute__((unused)), char **env)
 {
-	int	exit_status;
-
 	ft_init_minishell(env);
 	while (1)
 	{
@@ -77,7 +71,6 @@ int	main(int argc __attribute__((unused)), \
 		else
 			ft_start_execution();
 	}
-	exit_status = get_mini()->exit_s;
 	ft_garbage_collector(NULL, true);
-	return (ft_clean_ms(), exit_status);
+	return (ft_clean_ms(), get_mini()->exit_s);
 }
