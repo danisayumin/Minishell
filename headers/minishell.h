@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:16:33 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/26 21:47:14 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/27 17:10:40 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <limits.h>
 # include <dirent.h>
 # include <sys/wait.h>
+# include <sys/stat.h>
 # include <fcntl.h>
 # include "../libft/libft.h"
 # include "tokens.h"
@@ -41,7 +42,8 @@ typedef enum e_err_msg
 	ERRMSG_PERM_DENIED,
 	ERRMSG_AMBIGUOUS,
 	ERRMSG_TOO_MANY_ARGS,
-	ERRMSG_NUMERIC_REQUI
+	ERRMSG_NUMERIC_REQUI,
+	ERRMSG_IS_DIR
 }	t_err_msg;
 
 typedef enum e_err_no

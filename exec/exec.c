@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 17:02:51 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/26 17:40:37 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/27 17:03:50 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,5 +116,8 @@ int	ft_err_msg(t_err err)
 		return (ft_putstr_fd("minishell: exit: ", 2),
 			ft_putstr_fd(err.cause, 2),
 			ft_putstr_fd(": numeric argument required\n", 2), err.no);
+	else if (err.msg == ERRMSG_IS_DIR)
+		return (ft_putstr_fd("minishell: ", 2), ft_putstr_fd(err.cause, 2),
+			ft_putstr_fd(": Is a directory\n", 2), err.no);
 	return (0);
 }

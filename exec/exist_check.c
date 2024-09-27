@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exist_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 19:30:57 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/26 20:31:24 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/27 17:10:00 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,16 @@
 
 t_err	ft_check_exec(char *file, bool cmd)
 {
+	struct stat	filest;
+
 	if (!*file)
 		return ((t_err){ENO_GENERAL, ERRMSG_NO_SUCH_FILE, file});
 	if (access(file, F_OK) == 0)
 	{
 		if (access(file, X_OK) == -1)
 			return ((t_err){ENO_CANT_EXEC, ERRMSG_PERM_DENIED, file});
+		if (stat(file, &filest) == 0 && S_ISDIR(filest.st_mode))
+			return ((t_err){ENO_CANT_EXEC, ERRMSG_IS_DIR, file});
 		return ((t_err){ENO_SUCCESS, 42, NULL});
 	}
 	if (cmd)
