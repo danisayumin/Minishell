@@ -6,7 +6,7 @@
 /*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 20:17:33 by dsayumi-          #+#    #+#             */
-/*   Updated: 2024/09/25 18:40:03 by dsayumi-         ###   ########.fr       */
+/*   Updated: 2024/09/26 20:50:08 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	ft_export(char **argv)
 		return (ft_export_list(), 0);
 	while (argv[i])
 	{
-		if (ft_check_key(argv[i]))
+		if (ft_check_key(argv[i]) == 0)
 			exit_s = ft_export_err_msg(argv[i]);
 		else
 		{

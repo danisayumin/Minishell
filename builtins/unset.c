@@ -6,7 +6,7 @@
 /*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 20:37:20 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/25 20:06:17 by dsayumi-         ###   ########.fr       */
+/*   Updated: 2024/09/26 20:57:36 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,12 @@
 
 int	ft_check_key(char *str)
 {
-	size_t	i;
+	int	i;
 
-	i = 0;
-	if (!ft_isalpha(str[i]) && str[i] != '_')
+	i = 1;
+	if (!ft_isalpha(*str) && *str != '_')
 		return (0);
-	i++;
-	while (str[i])
+	while (str[i] && str[i] != '=')
 	{
 		if (!ft_isalnum(str[i]) && str[i] != '_')
 			return (0);
@@ -40,7 +39,10 @@ static void	ft_unset_helper(char *key)
 	{
 		if (!ft_strcmp(key, current->key))
 		{
-			get_mini()->envlst = current->next;
+			if (prev)
+				prev->next = current->next;
+			else
+				get_mini()->envlst = current->next;
 			free(current);
 			return ;
 		}

@@ -47,8 +47,7 @@ TOKENIZING	:=	tokens/tokenizer_appenders.c \
 				tokens/tokenizer_handler.c \
 				tokens/tokenizer_lst.c \
 				tokens/tokenizer_utils.c \
-				tokens/tokenizer.c \
-				tokens/ft_isspace.c
+				tokens/tokenizer.c
 
 SRCS		:=	$(PARSING)\
 				$(TOKENIZING)\
@@ -56,7 +55,7 @@ SRCS		:=	$(PARSING)\
 				$(CLEANING)\
 				$(EXEC)\
 				$(EXPANDER)\
-				main.c signals.c general_utils.c ft_strcmp.c
+				main.c signals.c general_utils.c
 
 OBJS		:=	$(SRCS:.c=.o)
 
