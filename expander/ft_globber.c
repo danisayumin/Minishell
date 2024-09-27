@@ -6,7 +6,7 @@
 /*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 17:00:57 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/25 19:52:40 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/26 21:30:14 by joscarlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	**ft_globber(char **expanded)
 	char	***globbed;
 
 	expanded_len = ft_str_arr_len(expanded);
-	globbed = (char ***)ft_calloc(expanded_len + 1, sizeof(char *));
+	globbed = (char ***)ft_calloc(expanded_len + 1, sizeof(char **));
 	i = 0;
 	while (expanded[i])
 	{
