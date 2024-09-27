@@ -6,7 +6,7 @@
 /*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:16:33 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/26 15:49:47 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/26 21:43:24 by joscarlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 # define MINISHELL_H
 
 # include <stdbool.h>
-
 # include <readline/readline.h>
 # include <readline/history.h>
-# include <unistd.h>
 # include <stdio.h>
 # include <signal.h>
 # include <termios.h>
@@ -211,7 +209,5 @@ char		*ft_strjoin_with_f(char *s1, char *s2, char c);
 char		*ft_strjoin_f(char *s1, char *s2);
 int			ft_strcmp(const char *s1, const char *s2);
 t_minishell	*get_mini(void);
-int			ft_isspace(char c);
-int			ft_strcmp(const char *s1, const char *s2);
 
 #endif
