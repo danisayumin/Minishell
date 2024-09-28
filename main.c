@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:00:59 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/27 13:58:07 by dsayumi-         ###   ########.fr       */
+/*   Updated: 2024/09/28 16:34:37 by joscarlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,16 @@ static void	ft_start_execution(void)
 int	main(int argc __attribute__((unused)), \
 			char **argv __attribute__((unused)), char **env)
 {
+	int	exit_status;
+	
 	ft_init_minishell(env);
+	exit_status = get_mini()->exit_s;
 	while (1)
 	{
 		ft_init_signals();
 		get_mini()->line = readline(PROMPT);
 		if (!get_mini()->line)
-			(ft_clean_ms(), ft_putstr_fd("exit\n", 1), exit(get_mini()->exit_s));
+			(ft_clean_ms(), ft_putstr_fd("exit\n", 1), exit(exit_status));
 		if (get_mini()->line[0])
 			add_history(get_mini()->line);
 		get_mini()->tokens = ft_tokenize();
@@ -73,5 +76,5 @@ int	main(int argc __attribute__((unused)), \
 			ft_start_execution();
 	}
 	ft_garbage_collector(NULL, true);
-	return (ft_clean_ms(), get_mini()->exit_s);
+	return (ft_clean_ms(), exit_status);
 }
