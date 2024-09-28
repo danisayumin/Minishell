@@ -6,7 +6,7 @@
 /*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 20:30:28 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/25 19:36:25 by dsayumi-         ###   ########.fr       */
+/*   Updated: 2024/09/28 18:26:51 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,7 @@ char	*ft_clean_empty_strs(char *str)
 	i = 0;
 	j = 0;
 	while (str[i])
-	{
-		if ((str[i] == '\'' && str[i + 1] == '\'')
-			|| (str[i] == '"' && str[i + 1] == '"'))
-			i += 2;
-		else
-			tmp[j++] = str[i++];
-	}
+		tmp[j++] = str[i++];
 	free(str);
 	dstsize = ft_strlen(tmp) + 1;
 	ret = ft_calloc(dstsize, sizeof(char));
