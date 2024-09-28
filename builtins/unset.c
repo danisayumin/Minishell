@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 20:37:20 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/27 20:45:02 by dsayumi-         ###   ########.fr       */
+/*   Updated: 2024/09/28 15:11:53 by joscarlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,14 @@ int	ft_unset(char **args)
 {
 	int		i;
 	bool	err;
-	char 	*str;
-	
+	char	*str;
+
 	i = 1;
 	if (get_mini()->tokens->next == NULL)
 		return (0);
 	str = get_mini()->tokens->next->value;
-	if((str[0] == '\"' || str[1] == '\"') || (str[0] == '\'' || str[1] == '\''))
+	if ((str[0] == '\"' || str[1] == '\"')
+		|| (str[0] == '\'' || str[1] == '\''))
 	{
 		ft_putstr_fd("minishell: unset: `", 2);
 		ft_putstr_fd(str, 2);

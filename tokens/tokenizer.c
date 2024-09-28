@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 21:42:11 by danielasayu       #+#    #+#             */
-/*   Updated: 2024/09/27 21:35:10 by dsayumi-         ###   ########.fr       */
+/*   Updated: 2024/09/28 13:47:55 by joscarlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_token	*ft_tokenize(void)
 	t_token	*token_list;
 
 	line = get_mini()->line;
-	if (line[0] == '|' && line [1] == ' ')
+	if (line[0] == '|')
 	{
 		ft_putstr_fd("minishell: syntax error near unexpected token `|", 2);
 		ft_putstr_fd("'\n", 2);
