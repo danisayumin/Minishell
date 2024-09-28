@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_redirect.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 19:12:07 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/21 19:12:25 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/27 17:30:36 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ int	ft_out(t_io_node *io_list, int *status)
 	{
 		*status = ft_err_msg(
 				(t_err){ENO_GENERAL, ERRMSG_AMBIGUOUS, io_list->value});
+		return (*status);
+	}
+	if (io_list->expanded_value[0][0] == '.' && io_list->expanded_value[0][1] == '\0')
+	{
+		*status = ft_err_msg(
+				(t_err){ENO_GENERAL, ERRMSG_IS_DIR, io_list->value});
 		return (*status);
 	}
 	fd = open(io_list->expanded_value[0], O_CREAT | O_WRONLY | O_TRUNC, 0644);

@@ -6,7 +6,7 @@
 /*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 18:55:20 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/24 19:12:58 by dsayumi-         ###   ########.fr       */
+/*   Updated: 2024/09/27 20:57:25 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static int	ft_exittoi(char *s)
 	ft_skip_spaces_and_get_sign(s, &i, &sign);
 	if (!ft_isnumber(s + i))
 	{
-		exit_s = ft_err_msg((t_err){ENO_EXEC_255, ERRMSG_NUMERIC_REQUI, s});
+		exit_s = ft_err_msg((t_err){2, ERRMSG_NUMERIC_REQUI, s});
 		(ft_clean_ms(), exit(exit_s));
 	}
 	result = 0;

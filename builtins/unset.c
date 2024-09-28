@@ -6,7 +6,7 @@
 /*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 20:37:20 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/26 20:57:36 by dsayumi-         ###   ########.fr       */
+/*   Updated: 2024/09/27 20:45:02 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,21 @@ int	ft_unset(char **args)
 {
 	int		i;
 	bool	err;
-
+	char 	*str;
+	
 	i = 1;
-	if (!args[1])
+	if (get_mini()->tokens->next == NULL)
 		return (0);
+	str = get_mini()->tokens->next->value;
+	if((str[0] == '\"' || str[1] == '\"') || (str[0] == '\'' || str[1] == '\''))
+	{
+		ft_putstr_fd("minishell: unset: `", 2);
+		ft_putstr_fd(str, 2);
+		ft_putstr_fd("': not a valid identifier\n", 2);
+		return (1);
+	}
+	// if (!args[1])
+	// 	return (0);
 	err = false;
 	while (args[i])
 	{

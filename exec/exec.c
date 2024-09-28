@@ -6,7 +6,7 @@
 /*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 17:02:51 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/27 17:03:50 by dsayumi-         ###   ########.fr       */
+/*   Updated: 2024/09/27 19:30:33 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void
 	else if (direction == TD_RIGHT)
 	{
 		close(pfds[1]);
-		dup2(pfds[0], STDOUT_FILENO);
+		dup2(pfds[0], STDIN_FILENO);
 		close(pfds[0]);
 	}
 	status = ft_exec_node(node, true);
