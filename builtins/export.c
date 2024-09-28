@@ -6,7 +6,7 @@
 /*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 20:17:33 by dsayumi-          #+#    #+#             */
-/*   Updated: 2024/09/28 15:11:20 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/28 17:18:50 by joscarlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,13 @@ int	ft_export(char **argv)
 	exit_s = 0;
 	i = 1;
 	if (get_mini()->tokens->next == NULL)
-		return (0);
+		return (ft_export_list(), 0);
 	str = get_mini()->tokens->next->value;
 	if ((str[0] == '\"' || str[1] == '\"')
 		|| (str[0] == '\'' || str[1] == '\''))
 	{
 		return (1);
 	}
-	if (!argv[1])
-		return (ft_export_list(), 0);
 	while (argv[i])
 	{
 		if (ft_check_key(argv[i]) == 0)
