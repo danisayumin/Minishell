@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:00:59 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/28 16:34:37 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/28 21:21:53 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,23 +39,26 @@ static void	ft_init_minishell(char **env)
 
 static void	ft_start_execution(void)
 {
+	t_minishell	*mini;
+
+	mini = get_mini();
 	signal(SIGQUIT, ft_sigquit_handler);
-	ft_init_tree(get_mini()->ast);
-	if (get_mini()->heredoc_sigint)
+	ft_init_tree(mini->ast);
+	if (mini->heredoc_sigint)
 	{
-		ft_clear_ast(&get_mini()->ast);
-		get_mini()->heredoc_sigint = false;
+		ft_clear_ast(&mini->ast);
+		mini->heredoc_sigint = false;
 	}
-	tcsetattr(STDIN_FILENO, TCSANOW, &get_mini()->original_term);
-	get_mini()->exit_s = ft_exec_node(get_mini()->ast, false);
-	ft_clear_ast(&get_mini()->ast);
+	tcsetattr(STDIN_FILENO, TCSANOW, &mini->original_term);
+	mini->exit_s = ft_exec_node(mini->ast, false);
+	ft_clear_ast(&mini->ast);
 }
 
 int	main(int argc __attribute__((unused)), \
 			char **argv __attribute__((unused)), char **env)
 {
 	int	exit_status;
-	
+
 	ft_init_minishell(env);
 	exit_status = get_mini()->exit_s;
 	while (1)
