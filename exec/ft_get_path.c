@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_path.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsayumi- <dsayumi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 19:42:02 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/25 19:52:01 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/28 23:15:01 by dsayumi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_path	ft_get_path(char *cmd)
 	if (*cmd == '\0')
 		return (
 			(t_path){(t_err){ENO_NOT_FOUND, ERRMSG_CMD_NOT_FOUND, cmd}, NULL});
-	if (ft_strnstr(cmd, "/", ft_strlen(cmd)))
+	if (ft_strnstr(cmd, "/", ft_strlen(cmd) - 1))
 		return ((t_path){ft_check_exec(cmd, false), cmd});
 	value = ft_get_envlst_val("PATH");
 	if (value)
