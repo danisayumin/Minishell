@@ -6,7 +6,7 @@
 /*   By: joscarlo <joscarlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 20:37:20 by joscarlo          #+#    #+#             */
-/*   Updated: 2024/09/28 15:11:53 by joscarlo         ###   ########.fr       */
+/*   Updated: 2024/09/28 21:15:25 by joscarlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,25 @@ static void	ft_unset_helper(char *key)
 	}
 }
 
+static bool	ft_unset_iterator(char **argv, bool err, int i)
+{
+	while (argv[i])
+	{
+		if (!ft_check_key(argv[i]))
+		{
+			ft_putstr_fd("minishell: unset: ", 2);
+			ft_putstr_fd(argv[i], 2);
+			ft_putstr_fd("': not a valid identifier\n", 2);
+			err = true;
+		}
+		else
+			ft_unset_helper(
+				ft_garbage_collector(ft_extract_key(argv[i]), false));
+		i++;
+	}
+	return (err);
+}
+
 int	ft_unset(char **args)
 {
 	int		i;
@@ -69,22 +88,6 @@ int	ft_unset(char **args)
 		ft_putstr_fd("': not a valid identifier\n", 2);
 		return (1);
 	}
-	// if (!args[1])
-	// 	return (0);
 	err = false;
-	while (args[i])
-	{
-		if (!ft_check_key(args[i]))
-		{
-			ft_putstr_fd("minishell: unset: ", 2);
-			ft_putstr_fd(args[i], 2);
-			ft_putstr_fd("': not a valid identifier\n", 2);
-			err = true;
-		}
-		else
-			ft_unset_helper(
-				ft_garbage_collector(ft_extract_key(args[i]), false));
-		i++;
-	}
-	return (err);
+	return (ft_unset_iterator(args, err, i));
 }
